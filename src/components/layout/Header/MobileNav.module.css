@@ -1,0 +1,109 @@
+/* src/components/layout/Header/MobileNav.module.css */
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s;
+}
+
+.overlayActive {
+  opacity: 1;
+  visibility: visible;
+}
+
+.navPanel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 85%;
+  max-width: 320px;
+  height: 100%;
+  background-color: var(--color-background);
+  z-index: 101;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(-100%);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.panelActive {
+  transform: translateX(0);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+.content {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.navList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navItem {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.navLink {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--color-text-base);
+}
+
+.submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-in-out;
+  background-color: #f9f9f9;
+}
+
+.submenuActive {
+  max-height: 500px; /* একটি বড় মান দিন */
+}
+
+.submenu ul {
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0;
+}
+
+.submenuLink {
+  display: block;
+  padding: 0.75rem 2rem; /* সাবমেনু আইটেম ইনডেন্ট করা */
+  color: var(--color-text-muted);
+  text-decoration: none;
+}

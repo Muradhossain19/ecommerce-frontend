@@ -1,0 +1,172 @@
+/* src/components/layout/Header.module.css */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* 1. Announcement Bar Styles (অপরিবর্তিত) */
+.announcementBar {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 0.5rem 0;
+  font-size: 0.8rem;
+  text-align: center;
+}
+.announcementContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.phoneIcon {
+  margin-right: 0.5rem;
+}
+
+/* --- মোবাইল ভিউ ফিক্স শুরু --- */
+
+/* 2. Main Header Content Styles (সাদা) */
+.mainHeaderContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px; /* উচ্চতা কমানো হলো */
+  position: relative;
+  background-color: var(--color-background);
+}
+
+/* বাম দিকের অংশ (মেনু বাটন ও লোগো) */
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem; /* মেনু বাটন ও লোগোর মধ্যে সামান্য গ্যাপ */
+}
+
+.mobileMenuButton {
+  display: block; /* মোবাইলে দেখানোর জন্য */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  /* z-index: 2001;  */
+  position: relative;
+}
+
+.hamburger {
+  width: 30px;
+  height: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  direction: ltr;
+}
+
+.hamburger span {
+  display: block;
+  height: 2px;
+  /* আপনার ব্র্যান্ডের প্রাইমারি কালার ব্যবহার করা হলো */
+  background: var(--color-primary);
+  transition: all 0.4s ease-in-out;
+  align-self: flex-start;
+}
+
+.topBun {
+  width: 83.33%;
+  animation: burger-hover 1s infinite ease-in-out alternate 200ms;
+}
+
+.meat {
+  width: 100%;
+  animation: burger-hover 1s infinite ease-in-out alternate 400ms;
+}
+
+.bottomBun {
+  width: 58.33%;
+  animation: burger-hover 1s infinite ease-in-out alternate 600ms;
+}
+
+@keyframes burger-hover {
+  0% {
+    width: 100%;
+  }
+  50% {
+    width: 60%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: 1.5rem; /* <<<<<<< মোবাইল ভিউয়ের জন্য ফন্ট সাইজ কমানো হলো */
+  font-weight: 700;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+/* ডান দিকের অংশ (আইকন) */
+.iconContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem; /* <<<<<<< আইকনগুলোর গ্যাপ কমানো হলো */
+}
+
+.iconButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-base);
+  padding: 0.4rem; /* <<<<<<< আইকনের প্যাডিং কমানো হলো */
+  border-radius: 50%;
+  transition: color 0.2s ease;
+}
+.iconButton:hover {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.cartIcon {
+  position: relative;
+}
+
+.cartBadge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--color-primary);
+  color: white;
+  font-size: 0.65rem; /* সাইজ কমানো হলো */
+  font-weight: bold;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--color-background);
+}
+
+/* --- মোবাইল ভিউ ফিক্স শেষ --- */
+
+/* ডেস্কটপ ভিউ (1024px থেকে) */
+@media (min-width: 1024px) {
+  .mainHeaderContent {
+    height: 80px;
+  }
+  .mobileMenuButton {
+    display: none; /* ডেস্কটপে হাইড */
+  }
+
+  .logoContainer {
+    margin-right: auto; /* ডেস্কটপে লোগোকে বামে রাখার জন্য */
+  }
+  .logo {
+    font-size: 1.75rem; /* ডেস্কটপের জন্য আবার বড় ফন্ট */
+  }
+  .iconContainer {
+    gap: 1rem; /* ডেস্কটপের জন্য বড় গ্যাপ */
+  }
+}

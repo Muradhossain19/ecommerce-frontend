@@ -1,42 +1,142 @@
+/* === DEENCOMMERCE GLOBAL STYLESHEET === */
+
+/* 
+ * 1. CSS VARIABLES (THEME TOKENS)
+ * ---------------------------------
+ * Define all colors, fonts, and spacing as CSS variables for consistency 
+ * and easier theme management (including dark mode).
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand Colors */
+  --color-primary: #f16620; /* আপনার প্রধান ব্র্যান্ডের রঙ (কমলা) */
+  --color-primary-hover: #d95a1c; /* হোভারের জন্য সামান্য গাঢ় */
+  --color-secondary: #000000; /* আপনার দ্বিতীয় ব্র্যান্ডের রঙ (কালো) */
+
+  /* Neutral & Text Colors (Light Mode) */
+  --color-text-base: #1a1a1a; /* মূল টেক্সটের জন্য */
+  --color-text-muted: #5c5c5c; /* হালকা বা সহায়ক টেক্সটের জন্য */
+  --color-background: #ffffff; /* পেজের ব্যাকগ্রাউন্ড */
+  --color-surface: #f9fafb; /* কার্ড বা সেকশনের ব্যাকগ্রাউন্ড */
+  --color-border: #e5e7eb; /* বর্ডার বা ডিভাইডারের জন্য */
+
+  /* Font Families (layout.tsx থেকে ভেরিয়েবলগুলো এখানে ব্যবহার করা হবে) */
+  --font-heading: var(--font-poppins), sans-serif;
+  --font-body: var(--font-roboto), sans-serif;
+
+  /* Other Variables */
+  --border-radius: 0.5rem; /* সবকিছুর জন্য একটি ডিফল্ট বর্ডার রেডিয়াস */
 }
 
-@media (prefers-color-scheme: dark) {
+/* 
+ * Dark Mode Color Palette
+ * Overrides the variables defined in :root when dark mode is active.
+ */
+/* @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+ 
+    --color-text-base: #f0f0f0;
+    --color-text-muted: #a0a0a0;
+    --color-background: #0a0a0a;
+    --color-surface: #1a1a1a;
+    --color-border: #2c2c2c;
   }
+} */
+
+/* 
+ * 2. MODERN CSS RESET
+ * -------------------
+ * A more modern and gentle reset than `* { margin: 0; padding: 0; }`.
+ * It preserves accessibility defaults while providing a clean slate.
+ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+html {
+  /* Smooth scrolling for anchor links */
+  scroll-behavior: smooth;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0; /* `*` سلیکٹورের পরিবর্তে `body`-তে `margin: 0` দেওয়া ভালো */
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+dl,
+dd {
   margin: 0;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+/* 
+ * 3. GLOBAL STYLES & TYPOGRAPHY
+ * -----------------------------
+ * Apply base styles to the body and common elements.
+ */
+body {
+  background-color: var(--color-background);
+  color: var(--color-text-base);
+  font-family: var(--font-body);
+  line-height: 1.6; /* উন্নত পঠনযোগ্যতার জন্য লাইন স্পেসিং */
+  overflow-x: hidden; /* সাইড-স্ক্রলিং প্রতিরোধ */
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+/* হেডিং-এর জন্য Poppins ফন্ট প্রয়োগ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 600; /* ডিফল্ট হেডিং ওজন */
+  color: var(--color-secondary); /* হেডিং-এর জন্য কালো রঙ */
+  line-height: 1.2;
+}
+
+a {
+  color: var(--color-primary); /* লিঙ্কগুলোকে ব্র্যান্ডের রঙ দেওয়া */
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+  text-decoration: underline;
+}
+
+/* 
+ * 4. UTILITY CLASSES (ঐচ্ছিক কিন্তু অত্যন্ত উপকারী)
+ * ------------------------------------------------
+ * কিছু সাধারণ ব্যবহারের জন্য ক্লাস তৈরি করে রাখা।
+ */
+.container {
+  width: 100%;
+  /* max-width: 1350px;  */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem; /* আগে ছিল 1rem, এখন 2rem */
+  padding-right: 2rem; /* আগে ছিল 1rem, এখন 2rem */
 }

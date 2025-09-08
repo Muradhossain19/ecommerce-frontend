@@ -1,0 +1,113 @@
+/* src/components/layout/Header/DesktopNav.module.css */
+.nav {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .nav {
+    display: flex;
+    justify-content: flex-start; /* আগে ছিল center, এখন flex-start */
+    background-color: #f5f5f5; /* হালকা ধূসর ব্যাকগ্রাউন্ড */
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+  }
+}
+
+.navList {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navItem {
+  position: relative;
+}
+
+.navLink {
+  position: relative;
+  display: flex;
+  align-items: left;
+  padding: 0.8rem 0.75rem; /* আগে ছিল 1.25rem, এখন 0.75rem */
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #4a4a4a; /* গাঢ় ধূসর টেক্সট, যা দেখতে প্রফেশনাল লাগে */
+  transition: color 0.3s ease;
+  overflow: hidden;
+}
+
+.navLink:hover {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+/* আন্ডারলাইন অ্যানিমেশন */
+.navLink::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: var(--color-primary);
+  transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.navLink:hover::after {
+  width: 100%;
+}
+
+.chevron {
+  margin-left: 0.25rem;
+  transition: transform 0.2s ease;
+}
+
+.navItem:hover .chevron {
+  transform: rotate(180deg);
+}
+
+/* Dropdown Styles */
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--color-background);
+  min-width: 220px;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+
+.dropdown.active {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.submenuList {
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0;
+}
+
+.submenuLink {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+  color: var(--color-text-base);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.submenuLink:hover {
+  background-color: #f5f5f5;
+  color: var(--color-primary);
+  text-decoration: none;
+}
