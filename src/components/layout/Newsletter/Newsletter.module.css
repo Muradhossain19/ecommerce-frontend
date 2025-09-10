@@ -1,0 +1,371 @@
+/* Newsletter Component Styles */
+
+.section {
+  padding: 4rem 0;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f16620' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.newsletterWrapper {
+  position: relative;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  display: flex;
+  min-height: 200px;
+}
+
+/* --- Content Area --- */
+.contentArea {
+  flex: 1 1 50%;
+  padding: 3rem;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary, #f16620) 0%,
+    #e55d12 100%
+  );
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.contentArea::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='white' fill-opacity='0.05'%3E%3Cpath d='M20 20c0-11.046-8.954-20-20-20v20h20z'/%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.iconWrapper {
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(10px);
+}
+
+.mailIcon {
+  color: white;
+}
+
+.textContent {
+  position: relative;
+  z-index: 2;
+}
+
+.title {
+  font-family: var(--font-heading, sans-serif);
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.benefitsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.benefit {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.checkIcon {
+  color: #10b981;
+  background: white;
+  border-radius: 50%;
+  padding: 2px;
+  flex-shrink: 0;
+}
+
+/* --- Form Area --- */
+.formArea {
+  flex: 1 1 50%;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form {
+  width: 100%;
+  max-width: 400px;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.inputContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 1rem;
+  color: #6b7280;
+  z-index: 2;
+}
+
+.emailInput {
+  width: 100%;
+  padding: 1rem 1rem 1rem 3rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: white;
+  font-family: var(--font-body); /* Ensure input text uses global font */
+}
+
+.emailInput::placeholder {
+  color: #6b7280;
+  opacity: 1;
+  font-family: var(--font-body); /* Ensure placeholder uses global font */
+  font-size: 1rem;
+}
+
+.emailInput:focus {
+  outline: none;
+  border-color: var(--color-primary, #f16620);
+  box-shadow: 0 0 0 3px rgba(241, 102, 32, 0.1);
+}
+
+.emailInput.inputError {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.submitButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.7rem 1.5rem;
+  background: #111827;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1rem;
+  border: 0.5px solid var(--color-secondary, #111827);
+  border-radius: 12px;
+  text-decoration: none;
+  margin-top: 0.5rem;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  cursor: pointer;
+  overflow: hidden;
+  font-family: var(--font-body);
+}
+
+.submitButton:hover:not(:disabled) {
+  background: #fff;
+  color: var(--color-primary, #f16620);
+  border: 0.5px solid var(--color-primary, #f16620);
+}
+
+.submitButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.submitButton.loading {
+  background: #6b7280;
+  color: #fff;
+  border-color: #6b7280;
+}
+
+.submitButton.success {
+  background: #10b981;
+  color: #fff;
+  border-color: #10b981;
+}
+
+.buttonText {
+  transition: opacity 0.3s ease;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- Status Message --- */
+.statusMessage {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.statusMessage.success {
+  background: #d1fae5;
+  color: #047857;
+  border: 1px solid #10b981;
+}
+
+.statusMessage.error {
+  background: #fee2e2;
+  color: #dc2626;
+  border: 1px solid #ef4444;
+}
+
+.disclaimer {
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 1024px) {
+  .newsletterWrapper {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .contentArea,
+  .formArea {
+    flex: none;
+    padding: 2.5rem;
+  }
+
+  .title {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 3rem 0;
+  }
+
+  .newsletterWrapper {
+    border-radius: 16px;
+    margin: 0 1rem;
+  }
+
+  .contentArea,
+  .formArea {
+    padding: 2rem;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .inputWrapper {
+    flex-direction: column;
+  }
+
+  .benefitsList {
+    margin-top: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 2rem 0;
+  }
+
+  .newsletterWrapper {
+    margin: 0 0.5rem;
+    border-radius: 12px;
+  }
+
+  .contentArea,
+  .formArea {
+    padding: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .iconWrapper {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 1.5rem;
+  }
+
+  .emailInput,
+  .submitButton {
+    padding: 0.875rem 1rem;
+    padding-left: 2.75rem;
+  }
+
+  .inputIcon {
+    left: 0.875rem;
+  }
+}
+
+/* --- Animation for entrance --- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.newsletterWrapper {
+  animation: fadeInUp 0.6s ease-out;
+}

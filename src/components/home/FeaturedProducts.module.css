@@ -129,11 +129,27 @@
   overflow: hidden;
   background-color: #f8f9fa;
 }
+
+.productCard:hover .productImage {
+  transform: scale(1.08);
+}
 .productImage {
   object-fit: cover;
-  transition: transform 1.5s cubic-bezier(0, 0, 0.44, 1.18);
+  transition: opacity 0.5s, transform 1.5s cubic-bezier(0, 0, 0.44, 1.18);
+  z-index: 1;
 }
-.productCard:hover .productImage {
+
+.hoverImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.productCard:hover .hoverImage {
+  opacity: 1;
   transform: scale(1.08);
 }
 
@@ -463,20 +479,26 @@
   .actionButton {
     opacity: 1;
     transform: none;
-    border-radius: 8px;
+    border-radius: 2px;
     background: none;
     border: none;
     box-shadow: none;
     color: #111827;
     background: rgba(255, 255, 255, 0.95);
-    width: 38px;
-    height: 38px;
+    width: 30px;
+    height: 30px;
     margin: 0;
   }
 
   .actionButton::before,
   .actionButton::after {
     display: none;
+  }
+  .sizeOptions {
+    display: none;
+  }
+  .hoverActions.withSizes {
+    bottom: 0px; /* Same as before, adjust if needed */
   }
 }
 
@@ -516,4 +538,5 @@
 .viewAllWrapper {
   text-align: center;
   margin-top: 1.2rem; /* প্রয়োজনমতো কমান/বাড়ান */
+  margin-bottom: 2rem; /* প্রয়োজনমতো কমান/বাড়ান */
 }

@@ -1,0 +1,452 @@
+/* src/components/home/CategoryShowcase.module.css */
+
+.section {
+  padding: 4rem 0;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: opacity, transform;
+}
+.section.inView {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.showcaseWrapper {
+  display: flex;
+  gap: 1.5rem;
+}
+
+/* --- ব্যানার অংশ --- */
+.bannerArea {
+  flex: 0 0 35%;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 3 / 3.2; /* লেআউট শিফট প্রতিরোধ করার জন্য */
+}
+
+.bannerLink {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.bannerImage {
+  object-fit: cover;
+  transition: transform 1.5s cubic-bezier(0, 0, 0.44, 1.18);
+}
+.bannerLink:hover .bannerImage {
+  transform: scale(1.08);
+}
+
+.bannerOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.65) 0%, transparent 75%);
+}
+
+.bannerContent {
+  position: absolute;
+  inset: 0;
+  padding: 2rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  /* text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); */
+}
+
+.bannerTitle {
+  font-family: var(--font-heading);
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.bannerSubtitle {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+.bannerButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.15);
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  transition: background-color 0.3s, border-color 0.3s;
+}
+.bannerLink:hover .bannerButton {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+/* --- প্রোডাক্ট গ্রিড অংশ --- */
+.productsArea {
+  flex: 1 1 65%;
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  height: 100%;
+}
+
+/* --- রিভার্স লেআউট --- */
+.section.reverse .showcaseWrapper {
+  flex-direction: row-reverse;
+}
+
+/* --- রেসপন্সিভ ডিজাইন --- */
+@media (max-width: 1200px) {
+  .productsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 3rem 0;
+  }
+  .showcaseWrapper,
+  .section.reverse .showcaseWrapper {
+    flex-direction: column;
+  }
+  .bannerArea {
+    min-height: 350px;
+    aspect-ratio: 4 / 3;
+  }
+  .bannerTitle {
+    font-size: 2rem;
+  }
+  .productsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+}
+
+/* --- Product Card Styles (copied from FeaturedProducts.module.css) --- */
+.imageContainer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 3.2;
+  overflow: hidden;
+  background-color: #f8f9fa;
+}
+.productImage {
+  object-fit: cover;
+  transition: transform 1.5s cubic-bezier(0, 0, 0.44, 1.18);
+  z-index: 1;
+}
+.productCard:hover .productImage {
+  transform: scale(1.08);
+}
+.hoverImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.productCard:hover .hoverImage {
+  opacity: 1;
+  transform: scale(1.08);
+}
+.labelsContainer {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 2;
+  align-items: flex-start;
+}
+.label {
+  display: block;
+  width: auto;
+  min-width: unset;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.5rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+.featureLabel {
+  background: #ff6b35;
+  color: #fff;
+}
+.discountLabel {
+  background: #e74c3c;
+  color: #fff;
+}
+.hoverActions {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 3;
+}
+.productCard:hover .hoverActions {
+  opacity: 1;
+}
+.hoverActions.withSizes {
+  bottom: 40px;
+}
+.actionButton {
+  position: relative;
+  width: 25px;
+  height: 25px;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #111827;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+}
+.productCard:hover .actionButton {
+  opacity: 1;
+  transform: translateY(0);
+}
+.productCard:hover .actionButton:nth-child(1) {
+  transition-delay: 0.05s;
+}
+.productCard:hover .actionButton:nth-child(2) {
+  transition-delay: 0.1s;
+}
+.productCard:hover .actionButton:nth-child(3) {
+  transition-delay: 0.15s;
+}
+.productCard:hover .actionButton:nth-child(4) {
+  transition-delay: 0.2s;
+}
+.actionButton:hover {
+  background-color: #000000;
+  color: white;
+  border-color: #000000;
+}
+.actionButton::before,
+.actionButton::after {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 10;
+}
+.actionButton::before {
+  content: attr(data-title);
+  bottom: 125%;
+  background-color: #000000;
+  color: white;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.actionButton::after {
+  content: "";
+  bottom: 100%;
+  border: 6px solid transparent;
+  border-top-color: #000000;
+}
+.actionButton:hover::before,
+.actionButton:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-5px);
+}
+.sizeOptions {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  background-color: rgba(100, 100, 100, 0.5);
+  backdrop-filter: blur(5px);
+  padding: 0.5rem;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
+  z-index: 2;
+}
+.productCard:hover .sizeOptions {
+  opacity: 1;
+  transform: translateY(0);
+}
+.sizeOption {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #ffffff;
+  cursor: pointer;
+}
+.cardContent {
+  padding: 1rem;
+}
+.productCategory {
+  font-size: 0.85rem;
+  color: var(--color-primary, #6b7280);
+  margin: 0 0 0.25rem 0;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.productName {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-base, #111827);
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+.ratingContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+.stars {
+  display: flex;
+  gap: 0.1rem;
+}
+.star {
+  font-size: 0.85rem;
+  color: #d1d5db;
+}
+.starFilled {
+  color: #fbbf24;
+}
+.reviewCount {
+  font-size: 0.8rem;
+  color: var(--color-text-muted, #6b7280);
+}
+.priceContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.priceContainer.noColors {
+  margin-bottom: 0.25rem;
+}
+.currentPrice {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-primary, #ef4444);
+}
+.originalPrice {
+  font-size: 0.7rem;
+  color: var(--color-text-muted, #6b7280);
+  text-decoration: line-through;
+}
+.colorOptions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.colorOption {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #e5e7eb;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s;
+}
+.colorOption:hover {
+  transform: scale(1.1);
+  border-color: var(--color-primary, #333);
+}
+
+/* Responsive for ProductCard */
+@media (max-width: 767px) {
+  .cardContent {
+    padding: 0.5rem;
+  }
+  .productName {
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+  }
+  .ratingContainer,
+  .priceContainer {
+    margin-bottom: 0.5rem;
+  }
+  .label {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.5rem;
+  }
+  .hoverActions {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: auto;
+    justify-content: center;
+    gap: 1rem;
+    opacity: 1;
+    transform: none;
+    padding: 0.5rem 0;
+    border-radius: 0 0 8px 8px;
+    z-index: 5;
+  }
+  .hoverActions.withSizes {
+    bottom: 5px;
+  }
+  .actionButton {
+    opacity: 1;
+    transform: none;
+    border-radius: 2px;
+    background: none;
+    border: none;
+    box-shadow: none;
+    color: #111827;
+    background: rgba(255, 255, 255, 0.95);
+    width: 30px;
+    height: 30px;
+    margin: 0;
+  }
+  .actionButton::before,
+  .actionButton::after {
+    display: none;
+  }
+  .sizeOptions {
+    display: none;
+  }
+}
+
+.productCard {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: white;
+  border-radius: var(--border-radius, 8px);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.productCard:hover {
+  box-shadow: 0 10px 10px -5px rgba(26, 26, 26, 0.1),
+    0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}

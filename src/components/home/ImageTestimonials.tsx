@@ -1,35 +1,16 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-
+import Image from "next/image";
 import Link from "next/link";
-
-import {
-  getNewProducts,
-  getDiscountPercentage,
-  formatPrice,
-} from "@/lib/productData";
-import styles from "./NewArrivals.module.css";
+import { imageTestimonialsData } from "@/lib/imageTestimonialsData";
+import styles from "./ImageTestimonials.module.css";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import ProductCard from "../common/ProductCard";
 
-const NewArrivals = () => {
+const ImageTestimonials = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [isMobile, setIsMobile] = useState(false);
-
-  // Sort by date, newest first, and limit to 8
-  const arrivals = getNewProducts(8);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -41,9 +22,11 @@ const NewArrivals = () => {
       },
       { threshold: 0.1 }
     );
+
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
     }
+
     return () => observer.disconnect();
   }, []);
 
@@ -54,7 +37,7 @@ const NewArrivals = () => {
         `.${styles.cardWrapper}`
       ) as HTMLElement;
       if (card) {
-        const scrollAmount = card.offsetWidth + 24;
+        const scrollAmount = card.offsetWidth + 24; // 24px হচ্ছে গ্যাপ
         current.scrollBy({
           left: direction === "left" ? -scrollAmount : scrollAmount,
           behavior: "smooth",
@@ -63,26 +46,13 @@ const NewArrivals = () => {
     }
   };
 
-  const renderStars = (rating: number) => {
-    return Array.from({ length: 5 }, (_, index) => (
-      <span
-        key={index}
-        className={`${styles.star} ${
-          index < Math.floor(rating) ? styles.starFilled : ""
-        }`}
-      >
-        ★
-      </span>
-    ));
-  };
-
   return (
     <section ref={sectionRef} className={styles.section}>
       <div className="container">
         <div className={styles.header}>
-          <h2 className={styles.title}>New Arrivals</h2>
+          <h2 className={styles.title}>Our Happy Customers</h2>
           <p className={styles.subtitle}>
-            Discover the latest additions to our collection
+            See what our real customers are saying about us.
           </p>
         </div>
         <div className={styles.sliderWrapper}>
@@ -95,9 +65,9 @@ const NewArrivals = () => {
           </button>
           <div className={styles.sliderArea} ref={scrollContainerRef}>
             <div className={styles.sliderTrack}>
-              {arrivals.map((product, index) => (
+              {imageTestimonialsData.map((testimonial, index) => (
                 <div
-                  key={product.id}
+                  key={testimonial.id}
                   className={`${styles.cardWrapper} ${
                     isVisible ? styles.animate : ""
                   }`}
@@ -105,15 +75,23 @@ const NewArrivals = () => {
                     { "--delay": `${index * 0.1}s` } as React.CSSProperties
                   }
                 >
-                  <ProductCard
-                    product={product}
-                    isMobile={isMobile}
-                    renderStars={renderStars}
-                    getDiscountPercentage={getDiscountPercentage}
-                    formatPrice={formatPrice}
-                    type="new"
-                    styles={styles}
-                  />
+                  <Link
+                    href={testimonial.link || "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.testimonialCard}
+                  >
+                    <Image
+                      src={testimonial.imageUrl}
+                      alt={testimonial.name}
+                      fill
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                      className={styles.testimonialImage}
+                    />
+                    <div className={styles.overlay}>
+                      <span className={styles.name}>{testimonial.name}</span>
+                    </div>
+                  </Link>
                 </div>
               ))}
             </div>
@@ -126,15 +104,9 @@ const NewArrivals = () => {
             <ArrowRight size={22} />
           </button>
         </div>
-        <div className={styles.viewAllWrapper}>
-          <Link href="/products" className={styles.viewAllButton}>
-            <span>View All Products</span>
-            <ArrowRight size={18} className={styles.arrowIcon} />
-          </Link>
-        </div>
       </div>
     </section>
   );
 };
 
-export default NewArrivals;
+export default ImageTestimonials;

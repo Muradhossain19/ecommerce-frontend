@@ -1,0 +1,228 @@
+/* src/components/home/DealsSection.module.css */
+
+.section {
+  padding: 4rem 0;
+  background-color: #f9fafb; /* হালকা ধূসর ব্যাকগ্রাউন্ড */
+}
+
+.dealWrapper {
+  display: flex;
+  gap: 2rem;
+  background-color: var(--color-background, #ffffff);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+/* --- বাম অংশ: ব্যানার --- */
+.bannerArea {
+  flex: 1 1 55%; /* ব্যানারকে বেশি জায়গা দেওয়া হয়েছে */
+  position: relative;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.bannerImage {
+  object-fit: cover;
+  z-index: 1;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+  z-index: 2;
+}
+
+.bannerContent {
+  position: relative;
+  z-index: 3;
+  color: white;
+  text-align: left;
+  max-width: 450px;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+/* --- কাউন্টডাউন টাইমার --- */
+.countdownTimer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  backdrop-filter: blur(5px);
+  width: fit-content;
+}
+
+.clockIcon {
+  margin-right: 0.5rem;
+}
+
+.timeBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timeValue {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.timeLabel {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.separator {
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding-bottom: 1rem; /* লেবেলের সাথে অ্যালাইন করার জন্য */
+}
+
+/* --- CTA বাটন --- */
+.viewAllWrapper {
+  text-align: left;
+  margin-top: 1.2rem;
+}
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #111827;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.7rem 1.5rem;
+  border: 0.5px solid var(--color-secondary);
+  text-decoration: none;
+  margin-top: 1rem;
+  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.ctaButton:hover {
+  background: #fff;
+  color: var(--color-primary);
+  border: 0.5px solid var(--color-primary);
+}
+
+.ctaButton .arrowIcon {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.ctaButton:hover .arrowIcon {
+  transform: translateX(8px);
+}
+
+/* --- ডান অংশ: প্রোডাক্ট --- */
+.productsArea {
+  flex: 1 1 45%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column; /* নতুন যোগ করুন */
+  align-items: center;
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  width: 100%;
+}
+.currentPrice {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-primary, #ef4444);
+}
+.originalPrice {
+  font-size: 0.7rem;
+  color: var(--color-text-muted, #6b7280);
+  text-decoration: line-through;
+}
+
+/* --- ডিলস বাটন --- */
+
+/* --- রেসপন্সিভ ডিজাইন --- */
+@media (max-width: 1024px) {
+  .dealWrapper {
+    flex-direction: column;
+  }
+  .bannerArea {
+    min-height: 400px;
+    text-align: center;
+  }
+  .bannerContent {
+    align-items: center;
+  }
+  .countdownTimer,
+  .ctaButton {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .productsArea {
+    padding: 0 2rem 2rem 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.5rem;
+  }
+  .productsGrid {
+    grid-template-columns: 1fr 1fr; /* মোবাইলেও ২টি কলাম থাকবে */
+    gap: 1rem;
+  }
+  .productsArea {
+    padding: 0 1rem 1.5rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 2rem 0;
+  }
+  .dealWrapper {
+    border-radius: 0;
+  }
+  .productsGrid {
+    grid-template-columns: 1fr 1fr; /* ছোট মোবাইলেও ২টি আইটেম পাসাপাশি */
+    gap: 0.7rem;
+  }
+  .title {
+    font-size: 2rem;
+  }
+  .countdownTimer {
+    gap: 0.3rem;
+    padding: 0.5rem 0.75rem;
+  }
+  .timeValue {
+    font-size: 1.2rem;
+  }
+}

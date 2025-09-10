@@ -2,7 +2,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
+
 import Link from "next/link";
 import {
   getFeaturedProducts,
@@ -10,14 +10,8 @@ import {
   getDiscountPercentage,
 } from "@/lib/productData"; // আপনার ডেটা সোর্স অনুযায়ী পাথ পরিবর্তন করুন
 import styles from "./FeaturedProducts.module.css";
-import {
-  ArrowLeft,
-  ArrowRight,
-  Eye,
-  Heart,
-  Shuffle,
-  ShoppingCart,
-} from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import ProductCard from "../common/ProductCard";
 
 const FeaturedProducts = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -109,143 +103,15 @@ const FeaturedProducts = () => {
                     { "--delay": `${index * 0.1}s` } as React.CSSProperties
                   }
                 >
-                  <Link
-                    href={`/products/${product.slug}`}
-                    className={styles.productCard}
-                  >
-                    <div className={styles.imageContainer}>
-                      <Image
-                        src={product.imageUrl}
-                        alt={product.name}
-                        fill
-                        className={styles.productImage}
-                        sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                      />
-
-                      {/* Labels */}
-                      <div className={styles.labelsContainer}>
-                        {product.isOnSale && product.originalPrice && (
-                          <span
-                            className={`${styles.label} ${styles.discountLabel}`}
-                          >
-                            -
-                            {getDiscountPercentage(
-                              product.originalPrice,
-                              product.price
-                            )}
-                            %
-                          </span>
-                        )}
-                        {product.isFeatured && (
-                          <span
-                            className={`${styles.label} ${styles.featureLabel}`}
-                          >
-                            FEATURED
-                          </span>
-                        )}
-                      </div>
-
-                      {/* Hover Actions */}
-                      <div
-                        className={`${styles.hoverActions} ${
-                          product.sizes ? styles.withSizes : ""
-                        }`}
-                      >
-                        {isMobile ? (
-                          <>
-                            <button className={styles.actionButton}>
-                              <ShoppingCart size={18} />
-                            </button>
-                            <button className={styles.actionButton}>
-                              <Eye size={18} />
-                            </button>
-                          </>
-                        ) : (
-                          <>
-                            <button
-                              className={styles.actionButton}
-                              data-title="Add to Cart"
-                            >
-                              <ShoppingCart size={18} />
-                            </button>
-                            <button
-                              className={styles.actionButton}
-                              data-title="Add to Wishlist"
-                            >
-                              <Heart size={18} />
-                            </button>
-                            <button
-                              className={styles.actionButton}
-                              data-title="Add to Compare"
-                            >
-                              <Shuffle size={18} />
-                            </button>
-                            <button
-                              className={styles.actionButton}
-                              data-title="Quick View"
-                            >
-                              <Eye size={18} />
-                            </button>
-                          </>
-                        )}
-                      </div>
-
-                      {/* Size Options */}
-                      {product.sizes && (
-                        <div className={styles.sizeOptions}>
-                          {product.sizes.slice(0, 4).map((size) => (
-                            <span key={size} className={styles.sizeOption}>
-                              {size}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-
-                    <div className={styles.cardContent}>
-                      <p className={styles.productCategory}>
-                        {product.category}
-                      </p>
-                      <h3 className={styles.productName}>{product.name}</h3>
-
-                      <div className={styles.ratingContainer}>
-                        <div className={styles.stars}>
-                          {renderStars(product.rating)}
-                        </div>
-                        <span className={styles.reviewCount}>
-                          ({product.reviewCount})
-                        </span>
-                      </div>
-
-                      <div
-                        className={`${styles.priceContainer} ${
-                          !product.colors || product.colors.length === 0
-                            ? styles.noColors
-                            : ""
-                        }`}
-                      >
-                        <span className={styles.currentPrice}>
-                          {formatPrice(product.price)}
-                        </span>
-                        {product.originalPrice && (
-                          <span className={styles.originalPrice}>
-                            {formatPrice(product.originalPrice)}
-                          </span>
-                        )}
-                      </div>
-                      {product.colors && product.colors.length > 0 && (
-                        <div className={styles.colorOptions}>
-                          {product.colors.slice(0, 4).map((color) => (
-                            <span
-                              key={color}
-                              className={styles.colorOption}
-                              style={{ backgroundColor: color.toLowerCase() }}
-                            />
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  </Link>
+                  <ProductCard
+                    product={product}
+                    isMobile={isMobile}
+                    renderStars={renderStars}
+                    getDiscountPercentage={getDiscountPercentage}
+                    formatPrice={formatPrice}
+                    type="featured"
+                    styles={styles}
+                  />
                 </div>
               ))}
             </div>

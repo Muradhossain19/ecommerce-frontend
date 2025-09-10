@@ -3,19 +3,19 @@
 import type { Metadata, Viewport } from "next";
 
 import "./globals.css";
-import Header from "@/components/layout/Header"; // আমরা হেডার ও ফুটার যোগ করব
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 import MobileBottomNav from "@/components/layout/MobileBottomNav";
 
 // ২. SEO-ফ্রেন্ডলি মেটাডেটা: বিস্তারিত এবং ডায়নামিক টাইটেল টেমপ্লেট
 export const metadata: Metadata = {
-  // title.template ব্যবহার করলে প্রতিটি পেজের টাইটেলের সাথে সাইটের নাম যুক্ত হবে
   title: {
-    default: "DeenCommerce - Your Modern Islamic Lifestyle Store", // ডিফল্ট টাইটেল
-    template: "%s | DeenCommerce", // পেজের টাইটেল এখানে '%s' দিয়ে প্রতিস্থাপিত হবে
+    default: "DeenCommerce - Your Modern Islamic Lifestyle Store",
+    template: "%s | DeenCommerce",
   },
   description:
     "Discover a curated collection of Islamic lifestyle products. Shop for modern modest fashion, books, prayer essentials, and more. Quality products for a mindful life.",
-  // আরও কিছু গুরুত্বপূর্ণ মেটা ট্যাগ
+
   keywords: [
     "islamic lifestyle",
     "modest fashion",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     title: "DeenCommerce - Your Modern Islamic Lifestyle Store",
     description:
       "Shop for modern modest fashion, books, prayer essentials, and more.",
-    images: ["/twitter-image.png"], // public ফোল্ডারে রাখুন (1200x630px)
+    images: ["/twitter-image.png"],
   },
   // অন্যান্য ট্যাগ
   robots: {
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
 
 // ৩. ভিউপোর্ট কনফিগারেশন: মোবাইল ডিভাইসের জন্য
 export const viewport: Viewport = {
-  themeColor: "#ffffff", // আপনার ব্র্যান্ডের প্রাইমারি কালারও দিতে পারেন
+  themeColor: "#ffffff",
   colorScheme: "light",
   width: "device-width",
   initialScale: 1,
@@ -91,7 +91,6 @@ const jsonLd = {
     contactType: "Customer Service",
   },
   sameAs: [
-    // আপনার সোশ্যাল মিডিয়া লিঙ্ক
     "https://www.facebook.com/yourpage",
     "https://www.instagram.com/yourpage",
     "https://www.twitter.com/yourpage",
@@ -106,17 +105,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* JSON-LD স্কিমা যোগ করা */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
       <body className="font-roboto antialiased">
-        {" "}
-        {/* ডিফল্ট বডি ফন্ট সেট করা */}
         <Header />
-        <main style={{ paddingBottom: "80px" }}>{children}</main>
+        <main>{children}</main>
+        <Footer />
         <MobileBottomNav />
       </body>
     </html>

@@ -1,0 +1,173 @@
+/* src/components/home/ImageTestimonials.module.css */
+
+.section {
+  padding: 4rem 0;
+  background-color: var(--color-background, #ffffff);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.title {
+  font-family: var(--font-heading, sans-serif);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-text-base, #111827);
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--color-text-muted, #6b7280);
+}
+
+/* --- Slider --- */
+.sliderWrapper {
+  position: relative;
+}
+
+.sliderArea {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding-bottom: 1rem; /* শ্যাডোর জন্য জায়গা */
+}
+.sliderArea::-webkit-scrollbar {
+  display: none;
+}
+
+.sliderTrack {
+  display: flex;
+  gap: 24px;
+}
+
+/* --- Navigation Buttons --- */
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  background: white;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #111827;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+}
+.navButton:hover {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+  transform: translateY(-50%) scale(1.05);
+}
+.leftArrow {
+  left: -22px;
+}
+.rightArrow {
+  right: -22px;
+}
+
+/* --- Testimonial Card --- */
+.cardWrapper {
+  flex-shrink: 0;
+  width: calc(25% - 19px); /* ডেস্কটপে ৫টি কার্ড */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition-delay: var(--delay, 0s);
+}
+.cardWrapper.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.testimonialCard {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1; /* বর্গাকার কার্ড */
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #f0f2f5; /* লোডিং ফলব্যাক */
+}
+
+.testimonialImage {
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.testimonialCard:hover .testimonialImage {
+  transform: scale(1.05);
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem 1rem 1rem 1rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+  display: flex;
+  align-items: flex-end;
+  transition: background 0.3s ease;
+}
+
+.testimonialCard:hover .overlay {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+}
+
+.name {
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Responsive --- */
+@media (max-width: 1024px) {
+  .cardWrapper {
+    width: calc(25% - 18px); /* ৪টি কার্ড */
+  }
+}
+
+@media (max-width: 768px) {
+  .cardWrapper {
+    width: 100%; /* ৩টি কার্ড */
+  }
+  .navButton {
+    width: 35px;
+    height: 35px;
+  }
+  .leftArrow {
+    left: -13px;
+  }
+  .rightArrow {
+    right: -13px;
+  }
+  .header {
+    text-align: left;
+    margin-bottom: 3rem;
+  }
+
+  .title {
+    font-family: var(--font-heading, sans-serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text-base, #111827);
+  }
+}
