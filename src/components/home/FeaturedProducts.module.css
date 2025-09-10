@@ -1,0 +1,519 @@
+/* =================================================================
+   Featured Products Section - Corrected CSS Code
+   ================================================================= */
+
+/* --- Section & Header (No changes) --- */
+.section {
+  padding: 4rem 0 0rem 0;
+  background-color: var(--color-background, #f9fafb);
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 1.5rem; /* ShopByCategory-এর মতো */
+  padding-right: 1.5rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+.navigation {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.navButton {
+  position: absolute;
+  top: 38%; /* একটু উপরে তুলুন, প্রয়োজনমতো % কম-বেশি করুন */
+  z-index: 5;
+  transform: translateY(-50%);
+  background: white;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #111827;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+}
+.navButton:hover {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+.leftArrow {
+  left: -20px; /* অর্ধেক বাইরে, অর্ধেক ভিতরে (width/2 * -1) */
+}
+.rightArrow {
+  right: -20px; /* অর্ধেক বাইরে, অর্ধেক ভিতরে */
+}
+.title {
+  font-family: var(--font-heading, sans-serif);
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--color-text-base, #111827);
+  margin-bottom: 0.5rem;
+}
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--color-text-muted, #6b7280);
+  margin-bottom: 0;
+}
+
+/* --- Slider (No changes) --- */
+.sliderWrapper {
+  position: relative;
+  display: flex;
+  gap: 24px;
+}
+
+.sliderArea {
+  flex-grow: 1;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding-bottom: 1rem;
+}
+.sliderArea::-webkit-scrollbar {
+  display: none;
+}
+.sliderTrack {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 0; /* একদম 0 */
+}
+
+/* --- Product Card (Minor changes) --- */
+.cardWrapper {
+  flex-shrink: 0;
+  width: calc(20% - 20px);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition-delay: var(--delay, 0s);
+}
+.cardWrapper.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+.productCard {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: white;
+  border-radius: var(--border-radius, 8px);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+.productCard:hover {
+  box-shadow: 0 10px 10px -5px rgba(26, 26, 26, 0.1),
+    0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Image & Overlays (Major Updates Here) --- */
+.imageContainer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background-color: #f8f9fa;
+}
+.productImage {
+  object-fit: cover;
+  transition: transform 1.5s cubic-bezier(0, 0, 0.44, 1.18);
+}
+.productCard:hover .productImage {
+  transform: scale(1.08);
+}
+
+/* --- Hover Actions (CORRECTED STYLE) --- */
+.hoverActions {
+  position: absolute;
+  left: 50%;
+  bottom: 16px; /* Always at the bottom, visually nice */
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 3;
+}
+
+.productCard:hover .hoverActions {
+  opacity: 1;
+}
+
+/* If sizeOptions exists, move hoverActions up */
+.hoverActions.withSizes {
+  bottom: 72px;
+}
+
+.actionButton {
+  position: relative; /* টুলটিপের জন্য এটি জরুরি */
+  width: 44px;
+  height: 44px;
+  border-radius: 8px; /* গোলাকার কোণা */
+  border: 1px solid #eee;
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #111827;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.productCard:hover .actionButton {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Wave-like Animation Delay */
+.productCard:hover .actionButton:nth-child(1) {
+  transition-delay: 0.05s;
+}
+.productCard:hover .actionButton:nth-child(2) {
+  transition-delay: 0.1s;
+}
+.productCard:hover .actionButton:nth-child(3) {
+  transition-delay: 0.15s;
+}
+.productCard:hover .actionButton:nth-child(4) {
+  transition-delay: 0.2s;
+}
+
+.actionButton:hover {
+  background-color: #000000;
+  color: white;
+  border-color: #000000;
+}
+
+/* --- Tooltip on Hover (NEW) --- */
+.actionButton::before,
+.actionButton::after {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 10;
+}
+
+.actionButton::before {
+  content: attr(data-title);
+  bottom: 125%; /* আইকনের উপরে দেখানোর জন্য */
+  background-color: #000000;
+  color: white;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.actionButton::after {
+  content: "";
+  bottom: 100%;
+  border: 6px solid transparent;
+  border-top-color: #000000;
+}
+
+.actionButton:hover::before,
+.actionButton:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-5px); /* সামান্য উপরের দিকে উঠবে */
+}
+
+/* --- Size Options (CORRECTED STYLE) --- */
+.sizeOptions {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  background-color: rgba(100, 100, 100, 0.5); /* আধা-স্বচ্ছ ধূসর */
+  backdrop-filter: blur(5px);
+  padding: 0.75rem;
+  opacity: 0;
+  transform: translateY(100%); /* নিচে লুকানো থাকবে */
+  transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
+  z-index: 2;
+}
+
+.productCard:hover .sizeOptions {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sizeOption {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+/* --- Card Content (No changes) --- */
+.cardContent {
+  padding: 1rem;
+}
+.productCategory {
+  font-size: 0.85rem;
+  color: var(--color-primary, #6b7280);
+  margin: 0 0 0.25rem 0;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.productName {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-base, #111827);
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+.ratingContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+.stars {
+  display: flex;
+  gap: 0.1rem;
+}
+.star {
+  font-size: 0.85rem;
+  color: #d1d5db;
+}
+.starFilled {
+  color: #fbbf24;
+}
+.reviewCount {
+  font-size: 0.8rem;
+  color: var(--color-text-muted, #6b7280);
+}
+.priceContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Add this: */
+.priceContainer.noColors {
+  margin-bottom: 0.25rem;
+}
+.currentPrice {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-primary, #ef4444);
+}
+.originalPrice {
+  font-size: 0.9rem;
+  color: var(--color-text-muted, #6b7280);
+  text-decoration: line-through;
+}
+.colorOptions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.colorOption {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #e5e7eb;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s;
+}
+.colorOption:hover {
+  transform: scale(1.1);
+  border-color: var(--color-primary, #333);
+}
+
+/* --- Labels (No changes) --- */
+.labelsContainer {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 2;
+  align-items: flex-start; /* যোগ করুন */
+}
+.label {
+  display: block; /* যোগ করুন */
+  width: auto;
+  min-width: unset;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.6rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+.featureLabel {
+  background: #ff6b35;
+  color: #fff;
+}
+.discountLabel {
+  background: #e74c3c;
+  color: #fff;
+}
+
+/* --- Responsive Styles (Minor adjustments) --- */
+@media (max-width: 1023px) {
+  .cardWrapper {
+    width: calc(20% - 20px);
+  }
+  .navButton {
+    width: 40px;
+    height: 40px;
+    top: 36%;
+  }
+  .leftArrow {
+    left: -22px;
+  }
+  .rightArrow {
+    right: -22px;
+  }
+}
+@media (max-width: 767px) {
+  .cardWrapper {
+    width: 43vw;
+  }
+  .header {
+    align-items: flex-start;
+    padding-left: 0;
+  }
+  .title {
+    font-size: 1.25rem;
+  }
+  .section {
+    padding: 3rem 0;
+  }
+  .cardContent {
+    padding: 0.5rem;
+  }
+  .productName {
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+  }
+  .ratingContainer,
+  .priceContainer {
+    margin-bottom: 0.5rem;
+  }
+  .navButton {
+    width: 30px;
+    height: 30px;
+    top: 32%;
+  }
+  .container {
+    padding-left: 0rem;
+    padding-right: 0rem;
+  }
+  .leftArrow {
+    left: -10px;
+  }
+  .rightArrow {
+    right: -10px;
+  }
+  .sliderTrack {
+    padding-left: 0; /* যদি থাকে */
+    padding-right: 0;
+  }
+
+  .label {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.5rem;
+  }
+
+  .hoverActions {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: auto;
+    justify-content: center;
+    gap: 1rem;
+    opacity: 1; /* সবসময় দেখাবে */
+    transform: none;
+    /* background: rgba(255, 255, 255, 0.95); */
+    padding: 0.5rem 0;
+    border-radius: 0 0 8px 8px;
+    z-index: 5;
+  }
+  .actionButton {
+    opacity: 1;
+    transform: none;
+    border-radius: 8px;
+    background: none;
+    border: none;
+    box-shadow: none;
+    color: #111827;
+    background: rgba(255, 255, 255, 0.95);
+    width: 38px;
+    height: 38px;
+    margin: 0;
+  }
+
+  .actionButton::before,
+  .actionButton::after {
+    display: none;
+  }
+}
+
+/* --- View All Button (NEW) --- */
+.viewAllButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #111827;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.7rem 1.5rem;
+  border: 0.5px solid var(--color-secondary);
+  text-decoration: none;
+  margin-top: 1rem;
+  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.viewAllButton:hover {
+  background: #fff;
+  color: var(--color-primary);
+  border: 0.5px solid var(--color-primary);
+}
+
+.viewAllButton .arrowIcon {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.viewAllButton:hover .arrowIcon {
+  transform: translateX(8px);
+}
+
+/* View All Button wrapper-এর জন্য আলাদা ক্লাস ব্যবহার করুন */
+.viewAllWrapper {
+  text-align: center;
+  margin-top: 1.2rem; /* প্রয়োজনমতো কমান/বাড়ান */
+}

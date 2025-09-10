@@ -8,27 +8,48 @@
     display: flex;
     justify-content: flex-start; /* আগে ছিল center, এখন flex-start */
     background-color: #f5f5f5; /* হালকা ধূসর ব্যাকগ্রাউন্ড */
+    border-top: none;
+    border-bottom: none;
+  }
+  .nav > .container {
     border-top: 1px solid #e0e0e0;
     border-bottom: 1px solid #e0e0e0;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    background: transparent;
+  }
+  .navList {
+    gap: 0 2rem; /* Only horizontal gap between columns */
+  }
+  .navItem {
+    margin-left: 0 !important; /* Remove any previous margin */
   }
 }
 
 .navList {
   display: flex;
+  flex-wrap: wrap; /* Allow items to wrap to next row */
   list-style: none;
   padding: 0;
   margin: 0;
+  row-gap: 0rem; /* Optional: space between rows */
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .navItem {
   position: relative;
+  white-space: nowrap; /* Prevent word break inside menu item */
+  flex: 0 1 auto;
 }
 
 .navLink {
   position: relative;
   display: flex;
-  align-items: left;
-  padding: 0.8rem 0.75rem; /* আগে ছিল 1.25rem, এখন 0.75rem */
+  align-items: flex-start; /* center theke flex-start */
+  justify-content: flex-start; /* add this line */
+  padding: 0.8rem 0rem;
   font-family: var(--font-heading);
   font-size: 0.875rem;
   font-weight: 500;

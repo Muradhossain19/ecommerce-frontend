@@ -1,26 +1,10 @@
 // src/app/layout.tsx
 
 import type { Metadata, Viewport } from "next";
-import { Poppins, Roboto } from "next/font/google";
+
 import "./globals.css";
 import Header from "@/components/layout/Header"; // আমরা হেডার ও ফুটার যোগ করব
-// import Footer from '@/components/layout/Footer';
-
-// ১. ফন্ট অপ্টিমাইজেশন: next/font ব্যবহার করে ফন্ট লোড করা
-// এটি স্বয়ংক্রিয়ভাবে ফন্ট ফাইল হোস্ট করে এবং Cumulative Layout Shift (CLS) প্রতিরোধ করে।
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"], // আপনার প্রয়োজনীয় ওজনগুলো যোগ করুন
-  display: "swap", // ফন্ট লোড হওয়ার সময় ফলব্যাক ফন্ট দেখাবে
-  variable: "--font-poppins", // CSS ভেরিয়েবল হিসেবে ব্যবহার করার জন্য
-});
-
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  display: "swap",
-  variable: "--font-roboto",
-});
+import MobileBottomNav from "@/components/layout/MobileBottomNav";
 
 // ২. SEO-ফ্রেন্ডলি মেটাডেটা: বিস্তারিত এবং ডায়নামিক টাইটেল টেমপ্লেট
 export const metadata: Metadata = {
@@ -120,7 +104,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${poppins.variable} ${roboto.variable}`}>
+    <html lang="en">
       <head>
         {/* JSON-LD স্কিমা যোগ করা */}
         <script
@@ -132,8 +116,8 @@ export default function RootLayout({
         {" "}
         {/* ডিফল্ট বডি ফন্ট সেট করা */}
         <Header />
-        <main>{children}</main>
-        {/* <Footer /> */}
+        <main style={{ paddingBottom: "80px" }}>{children}</main>
+        <MobileBottomNav />
       </body>
     </html>
   );

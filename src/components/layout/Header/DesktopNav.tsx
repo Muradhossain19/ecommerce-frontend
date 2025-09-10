@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { menuData, MenuItem } from "@/lib/menuData";
+import { menuData } from "@/lib/menuData";
 import styles from "./DesktopNav.module.css";
 import { ChevronDown } from "lucide-react";
 

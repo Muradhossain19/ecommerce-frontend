@@ -1,55 +1,138 @@
 /* src/components/layout/Header.module.css */
 
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+/* ===== 1. ANNOUNCEMENT BAR (Non-sticky) ===== */
+.announcementBar {
+  background: var(--color-secondary);
+
+  min-height: 48px;
+  position: relative;
+  z-index: 100;
+  width: 100%;
+  overflow: hidden; /* Prevent content from overflowing during animation */
 }
 
-/* 1. Announcement Bar Styles (অপরিবর্তিত) */
-.announcementBar {
-  background-color: #000000;
-  color: #ffffff;
-  padding: 0.5rem 0;
-  font-size: 0.8rem;
-  text-align: center;
-}
 .announcementContent {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  min-height: 48px;
+  position: relative;
+}
+
+.announcementSocial {
+  display: flex;
+  gap: 0.8rem;
   align-items: center;
 }
-.phoneIcon {
-  margin-right: 0.5rem;
+
+.announcementSocial a {
+  background: #ededed;
+  color: #111;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  transition: background 0.2s, color 0.2s;
+  text-decoration: none;
 }
 
-/* --- মোবাইল ভিউ ফিক্স শুরু --- */
+.announcementSocial a:hover {
+  background: var(--color-primary, #f16620);
+  color: #fff;
+}
 
-/* 2. Main Header Content Styles (সাদা) */
+.announcementSlider {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* New animation classes */
+.announcementText {
+  display: inline-block; /* Ensures transform works correctly */
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #fff;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.announcementTextEnter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.announcementTextEnterActive {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.announcementTextExit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.announcementTextExitActive {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+@keyframes slideRightIn {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.announcementRight {
+  margin-left: auto;
+  width: 40px;
+}
+
+/* ===== 2. MAIN HEADER ===== */
+.stickyHeader {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  transition: all 0.3s ease-in-out;
+}
+
+.mainHeader {
+  background: white;
+}
+
 .mainHeaderContent {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  height: 60px; /* উচ্চতা কমানো হলো */
+  height: 60px;
   position: relative;
-  background-color: var(--color-background);
 }
 
-/* বাম দিকের অংশ (মেনু বাটন ও লোগো) */
+/* Left Section: Menu + Slogan */
 .leftSection {
   display: flex;
   align-items: center;
-  gap: 0.25rem; /* মেনু বাটন ও লোগোর মধ্যে সামান্য গ্যাপ */
+  flex: 1;
+  gap: 0.5rem;
 }
 
 .mobileMenuButton {
-  display: block; /* মোবাইলে দেখানোর জন্য */
+  display: block;
   background: none;
   border: none;
   cursor: pointer;
   padding: 10px;
-  /* z-index: 2001;  */
   position: relative;
 }
 
@@ -60,13 +143,11 @@
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  direction: ltr;
 }
 
 .hamburger span {
   display: block;
   height: 2px;
-  /* আপনার ব্র্যান্ডের প্রাইমারি কালার ব্যবহার করা হলো */
   background: var(--color-primary);
   transition: all 0.4s ease-in-out;
   align-self: flex-start;
@@ -99,19 +180,49 @@
   }
 }
 
-.logo {
-  font-family: var(--font-heading);
-  font-size: 1.5rem; /* <<<<<<< মোবাইল ভিউয়ের জন্য ফন্ট সাইজ কমানো হলো */
-  font-weight: 700;
-  color: var(--color-primary);
-  text-decoration: none;
+.sloganWrapper {
+  display: flex;
+  align-items: center;
 }
 
-/* ডান দিকের অংশ (আইকন) */
+.sloganText {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #111;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.sloganHighlight {
+  color: var(--color-primary, #f16620);
+  font-weight: 800;
+  margin-left: 0.2em;
+}
+
+/* Center: Logo */
+.logoContainer {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.logoImg {
+  max-width: 140px;
+  height: auto;
+  display: block;
+}
+
+/* Right: Icons */
 .iconContainer {
   display: flex;
   align-items: center;
-  gap: 0.25rem; /* <<<<<<< আইকনগুলোর গ্যাপ কমানো হলো */
+  justify-content: flex-end;
+  flex: 1;
+  gap: 0.25rem;
 }
 
 .iconButton {
@@ -119,10 +230,11 @@
   border: none;
   cursor: pointer;
   color: var(--color-text-base);
-  padding: 0.4rem; /* <<<<<<< আইকনের প্যাডিং কমানো হলো */
+  padding: 0.4rem;
   border-radius: 50%;
   transition: color 0.2s ease;
 }
+
 .iconButton:hover {
   color: var(--color-primary);
   text-decoration: none;
@@ -138,7 +250,7 @@
   right: 0;
   background-color: var(--color-primary);
   color: white;
-  font-size: 0.65rem; /* সাইজ কমানো হলো */
+  font-size: 0.65rem;
   font-weight: bold;
   border-radius: 50%;
   width: 16px;
@@ -149,24 +261,86 @@
   border: 1px solid var(--color-background);
 }
 
-/* --- মোবাইল ভিউ ফিক্স শেষ --- */
+/* ===== 3. RESPONSIVE ===== */
 
-/* ডেস্কটপ ভিউ (1024px থেকে) */
+/* Desktop */
 @media (min-width: 1024px) {
   .mainHeaderContent {
     height: 80px;
   }
+
   .mobileMenuButton {
-    display: none; /* ডেস্কটপে হাইড */
+    display: none;
   }
 
-  .logoContainer {
-    margin-right: auto; /* ডেস্কটপে লোগোকে বামে রাখার জন্য */
+  .logoImg {
+    max-width: 160px;
   }
-  .logo {
-    font-size: 1.75rem; /* ডেস্কটপের জন্য আবার বড় ফন্ট */
-  }
+
   .iconContainer {
-    gap: 1rem; /* ডেস্কটপের জন্য বড় গ্যাপ */
+    gap: 1rem;
+  }
+
+  .userIcon {
+    display: flex;
+  }
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .announcementBar {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .announcementContent {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .sloganWrapper {
+    display: none;
+  }
+
+  .announcementText {
+    font-size: 0.95rem;
+  }
+
+  .announcementRight {
+    display: none;
+  }
+
+  .logoImg {
+    max-width: 100px;
+  }
+
+  .userIcon {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .userIcon {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .announcementText {
+    font-size: 0.85rem;
+  }
+
+  .logoImg {
+    max-width: 90px;
+  }
+
+  .iconContainer {
+    gap: 0.1rem;
+  }
+  .announcementSocial {
+    display: none;
   }
 }

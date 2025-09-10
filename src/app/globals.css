@@ -3,50 +3,30 @@
 /* 
  * 1. CSS VARIABLES (THEME TOKENS)
  * ---------------------------------
- * Define all colors, fonts, and spacing as CSS variables for consistency 
- * and easier theme management (including dark mode).
+ * Only Century Gothic for all font variables
  */
 :root {
   /* Brand Colors */
-  --color-primary: #f16620; /* আপনার প্রধান ব্র্যান্ডের রঙ (কমলা) */
-  --color-primary-hover: #d95a1c; /* হোভারের জন্য সামান্য গাঢ় */
-  --color-secondary: #000000; /* আপনার দ্বিতীয় ব্র্যান্ডের রঙ (কালো) */
+  --color-primary: #f16620;
+  --color-primary-hover: #d95a1c;
+  --color-secondary: #000000;
 
   /* Neutral & Text Colors (Light Mode) */
-  --color-text-base: #1a1a1a; /* মূল টেক্সটের জন্য */
-  --color-text-muted: #5c5c5c; /* হালকা বা সহায়ক টেক্সটের জন্য */
-  --color-background: #ffffff; /* পেজের ব্যাকগ্রাউন্ড */
-  --color-surface: #f9fafb; /* কার্ড বা সেকশনের ব্যাকগ্রাউন্ড */
-  --color-border: #e5e7eb; /* বর্ডার বা ডিভাইডারের জন্য */
+  --color-text-base: #1a1a1a;
+  --color-text-muted: #5c5c5c;
+  --color-background: #ffffff;
+  --color-surface: #f9fafb;
+  --color-border: #e5e7eb;
 
-  /* Font Families (layout.tsx থেকে ভেরিয়েবলগুলো এখানে ব্যবহার করা হবে) */
-  --font-heading: var(--font-poppins), sans-serif;
-  --font-body: var(--font-roboto), sans-serif;
+  /* Font Families: Only Century Gothic */
+  --font-heading: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  --font-body: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
 
-  /* Other Variables */
-  --border-radius: 0.5rem; /* সবকিছুর জন্য একটি ডিফল্ট বর্ডার রেডিয়াস */
+  --border-radius: 0.5rem;
 }
 
 /* 
- * Dark Mode Color Palette
- * Overrides the variables defined in :root when dark mode is active.
- */
-/* @media (prefers-color-scheme: dark) {
-  :root {
- 
-    --color-text-base: #f0f0f0;
-    --color-text-muted: #a0a0a0;
-    --color-background: #0a0a0a;
-    --color-surface: #1a1a1a;
-    --color-border: #2c2c2c;
-  }
-} */
-
-/* 
  * 2. MODERN CSS RESET
- * -------------------
- * A more modern and gentle reset than `* { margin: 0; padding: 0; }`.
- * It preserves accessibility defaults while providing a clean slate.
  */
 *,
 *::before,
@@ -55,16 +35,20 @@
 }
 
 html {
-  /* Smooth scrolling for anchor links */
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
-  margin: 0; /* `*` سلیکٹورের পরিবর্তে `body`-তে `margin: 0` দেওয়া ভালো */
+  margin: 0;
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-background);
+  color: var(--color-text-base);
+  font-family: var(--font-body);
+  line-height: 1.6;
 }
 
 img,
@@ -92,18 +76,7 @@ dd {
 
 /* 
  * 3. GLOBAL STYLES & TYPOGRAPHY
- * -----------------------------
- * Apply base styles to the body and common elements.
  */
-body {
-  background-color: var(--color-background);
-  color: var(--color-text-base);
-  font-family: var(--font-body);
-  line-height: 1.6; /* উন্নত পঠনযোগ্যতার জন্য লাইন স্পেসিং */
-  overflow-x: hidden; /* সাইড-স্ক্রলিং প্রতিরোধ */
-}
-
-/* হেডিং-এর জন্য Poppins ফন্ট প্রয়োগ */
 h1,
 h2,
 h3,
@@ -111,32 +84,41 @@ h4,
 h5,
 h6 {
   font-family: var(--font-heading);
-  font-weight: 600; /* ডিফল্ট হেডিং ওজন */
-  color: var(--color-secondary); /* হেডিং-এর জন্য কালো রঙ */
+  font-weight: 600;
+  color: var(--color-secondary);
   line-height: 1.2;
 }
 
 a {
-  color: var(--color-primary); /* লিঙ্কগুলোকে ব্র্যান্ডের রঙ দেওয়া */
+  color: var(--color-primary);
   text-decoration: none;
   transition: color 0.2s ease-in-out;
 }
 
 a:hover {
   color: var(--color-primary-hover);
-  text-decoration: underline;
 }
 
 /* 
- * 4. UTILITY CLASSES (ঐচ্ছিক কিন্তু অত্যন্ত উপকারী)
- * ------------------------------------------------
- * কিছু সাধারণ ব্যবহারের জন্য ক্লাস তৈরি করে রাখা।
+ * 4. UTILITY CLASSES
  */
 .container {
   width: 100%;
-  /* max-width: 1350px;  */
   margin-left: auto;
   margin-right: auto;
-  padding-left: 2rem; /* আগে ছিল 1rem, এখন 2rem */
-  padding-right: 2rem; /* আগে ছিল 1rem, এখন 2rem */
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+@media (max-width: 900px) {
+  .container {
+    padding-left: 0.9rem;
+    padding-right: 0.9rem;
+  }
+}
+@media (max-width: 768px) {
+  body {
+    /* বটম নেভিগেশন বারের উচ্চতার সমান padding-bottom দিন */
+    padding-bottom: 65px;
+  }
 }

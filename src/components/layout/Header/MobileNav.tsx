@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { menuData, MenuItem } from "@/lib/menuData";
+import { menuData } from "@/lib/menuData";
 import styles from "./MobileNav.module.css";
 import { X, ChevronDown, ChevronUp } from "lucide-react";
 

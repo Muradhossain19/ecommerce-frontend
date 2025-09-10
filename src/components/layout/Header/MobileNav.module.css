@@ -7,7 +7,7 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 100;
+  z-index: 90; /* increased */
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s;
@@ -26,7 +26,7 @@
   max-width: 320px;
   height: 100%;
   background-color: var(--color-background);
-  z-index: 101;
+  z-index: 100; /* increased */
   display: flex;
   flex-direction: column;
   transform: translateX(-100%);
@@ -76,9 +76,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 1.25rem;
-  font-size: 1rem;
-  font-weight: 500;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.8rem;
+  font-weight: 400;
   cursor: pointer;
   text-decoration: none;
   color: var(--color-text-base);
@@ -103,7 +103,8 @@
 
 .submenuLink {
   display: block;
-  padding: 0.75rem 2rem; /* সাবমেনু আইটেম ইনডেন্ট করা */
+  padding: 0.5rem 2rem; /* সাবমেনু আইটেম ইনডেন্ট করা */
   color: var(--color-text-muted);
   text-decoration: none;
+  font-size: 0.7rem;
 }
