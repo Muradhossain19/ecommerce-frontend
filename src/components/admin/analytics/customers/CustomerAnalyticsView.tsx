@@ -1,21 +1,14 @@
 "use client";
 
 import React from "react";
-// PieLabelRenderProps ইম্পোর্ট করার আর প্রয়োজন নেই
-import {
-  PieChart,
-  Pie,
-  Cell,
-  ResponsiveContainer,
-  Tooltip,
-  Legend,
-} from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import { AnalyticsPageLayout } from "../layouts/AnalyticsPageLayout";
 import { StatCard } from "../shared/StatCard";
 import { ChartCard } from "../shared/ChartCard";
+import { DataTable, Column } from "../shared/DataTable"; // DataTable ইম্পোর্ট
 import styles from "../shared/Shared.module.css";
 
-// --- Sample Data (অপরিবর্তিত) ---
+// --- ডেটা সেট (id সহ) ---
 const customerStats = [
   {
     title: "Total Customers",
@@ -43,8 +36,8 @@ const customerStats = [
   },
 ];
 const customerTypeData = [
-  { name: "New Customers", value: 1150, color: "#00C49F" },
-  { name: "Returning Customers", value: 7080, color: "var(--color-primary)" },
+  { name: "New Customers", value: 14, color: "#00C49F" },
+  { name: "Returning Customers", value: 86, color: "var(--color-primary)" },
 ];
 const topCustomers = [
   {
@@ -77,117 +70,112 @@ const topCustomers = [
   },
 ];
 
-// --- Main Component (সংশোধিত) ---
+// --- কলাম ডেফিনিশন (className সহ) ---
+const customerColumns: Column<(typeof topCustomers)[0]>[] = [
+  { key: "name", title: "Customer Name" },
+  { key: "location", title: "Location" },
+  { key: "totalOrders", title: "Total Orders", className: styles.numericCell },
+  { key: "totalSpend", title: "Total Spend", className: styles.numericCell },
+];
+
+const renderCustomizedLabel = (props: {
+  cx?: number | string;
+  cy?: number | string;
+  midAngle?: number;
+  innerRadius?: number;
+  outerRadius?: number;
+  percent?: number;
+}) => {
+  const { cx, cy, midAngle, innerRadius, outerRadius, percent } = props;
+
+  // --- কঠোর টাইপ-গার্ড ---
+  if (
+    cx === undefined ||
+    cy === undefined ||
+    midAngle === undefined ||
+    innerRadius === undefined ||
+    outerRadius === undefined ||
+    percent === undefined ||
+    percent === 0
+  ) {
+    return null;
+  }
+
+  // cx এবং cy কে number হিসেবে নিশ্চিত করা
+  const numCx = typeof cx === "string" ? parseFloat(cx) : cx;
+  const numCy = typeof cy === "string" ? parseFloat(cy) : cy;
+
+  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+  const x = numCx + radius * Math.cos(-midAngle * (Math.PI / 180));
+  const y = numCy + radius * Math.sin(-midAngle * (Math.PI / 180));
+
+  return (
+    <text
+      x={x}
+      y={y}
+      fill="white"
+      textAnchor="middle"
+      dominantBaseline="central"
+      fontSize="14px"
+      fontWeight="bold"
+    >
+      {`${(percent * 100).toFixed(0)}%`}
+    </text>
+  );
+};
+
 export const CustomerAnalyticsView: React.FC = () => {
-  // --- কাস্টম লেবেল রেন্ডার করার ফাংশন (চূড়ান্ত এবং ১০০% কার্যকরী সমাধান) ---
-  const renderCustomizedLabel = (props: {
-    cx?: number | string;
-    cy?: number | string;
-    midAngle?: number;
-    innerRadius?: number;
-    outerRadius?: number;
-    percent?: number;
-  }) => {
-    const { cx, cy, midAngle, innerRadius, outerRadius, percent } = props;
-
-    // --- কঠোর টাইপ-গার্ড ---
-    if (
-      cx === undefined ||
-      cy === undefined ||
-      midAngle === undefined ||
-      innerRadius === undefined ||
-      outerRadius === undefined ||
-      percent === undefined ||
-      percent === 0
-    ) {
-      return null;
-    }
-
-    // cx এবং cy কে number হিসেবে নিশ্চিত করা
-    const numCx = typeof cx === "string" ? parseFloat(cx) : cx;
-    const numCy = typeof cy === "string" ? parseFloat(cy) : cy;
-
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    const x = numCx + radius * Math.cos(-midAngle * (Math.PI / 180));
-    const y = numCy + radius * Math.sin(-midAngle * (Math.PI / 180));
-
-    return (
-      <text
-        x={x}
-        y={y}
-        fill="white"
-        textAnchor="middle"
-        dominantBaseline="central"
-        fontSize="14px"
-        fontWeight="bold"
-      >
-        {`${(percent * 100).toFixed(0)}%`}
-      </text>
-    );
-  };
-
   return (
     <AnalyticsPageLayout title="Customer Insights" defaultDateRange="All Time">
       <div className={styles.statsGrid}>
         {customerStats.map((stat) => (
-          <StatCard
-            key={stat.title}
-            title={stat.title}
-            value={stat.value}
-            change={stat.change}
-            trend={stat.trend}
-          />
+          <StatCard key={stat.title} {...stat} />
         ))}
       </div>
 
-      <div className={styles.analyticsGrid}>
+      <div className={styles.balancedGrid}>
         <ChartCard title="New vs. Returning Customers">
-          <ResponsiveContainer width="100%" height="100%">
-            <PieChart>
-              <Pie
-                data={customerTypeData}
-                dataKey="value"
-                nameKey="name"
-                cx="50%"
-                cy="50%"
-                outerRadius={120}
-                labelLine={false}
-                // --- এখানে চূড়ান্ত ফাংশনটি ব্যবহার করা হয়েছে ---
-                label={renderCustomizedLabel}
-              >
-                {customerTypeData.map((entry) => (
-                  <Cell key={entry.name} fill={entry.color} />
-                ))}
-              </Pie>
-              <Tooltip formatter={(value: number) => value.toLocaleString()} />
-              <Legend wrapperStyle={{ bottom: -10 }} />
-            </PieChart>
-          </ResponsiveContainer>
+          <div className={styles.pieChartWithLegend}>
+            <div className={styles.pieChartContainer}>
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={customerTypeData}
+                    dataKey="value"
+                    nameKey="name"
+                    cx="50%"
+                    cy="50%"
+                    outerRadius="80%"
+                    labelLine={false}
+                    label={renderCustomizedLabel}
+                  >
+                    {customerTypeData.map((entry) => (
+                      <Cell key={entry.name} fill={entry.color} />
+                    ))}
+                  </Pie>
+                  <Tooltip formatter={(value: number) => `${value}%`} />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+            <div className={styles.pieLegendContainer}>
+              {customerTypeData.map((entry) => (
+                <div key={entry.name} className={styles.pieLegendItem}>
+                  <span
+                    className={styles.pieLegendColorBox}
+                    style={{ backgroundColor: entry.color }}
+                  />
+                  <span className={styles.pieLegendLabel}>{entry.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </ChartCard>
 
-        <div className={styles.tableCard}>
-          <h4 className={styles.chartTitle}>Top Customers by Spend</h4>
-          <table className={styles.dataTable}>
-            <thead>
-              <tr>
-                <th>Customer Name</th>
-                <th>Location</th>
-                <th>Total Orders</th>
-                <th>Total Spend</th>
-              </tr>
-            </thead>
-            <tbody>
-              {topCustomers.map((customer) => (
-                <tr key={customer.id}>
-                  <td>{customer.name}</td>
-                  <td>{customer.location}</td>
-                  <td>{customer.totalOrders}</td>
-                  <td>{customer.totalSpend}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <DataTable
+          title="Top Customers by Spend"
+          columns={customerColumns}
+          data={topCustomers}
+        />
       </div>
     </AnalyticsPageLayout>
   );

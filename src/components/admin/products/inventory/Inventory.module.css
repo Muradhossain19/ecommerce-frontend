@@ -1,0 +1,498 @@
+.inventoryPage {
+  padding: 0.2rem;
+}
+
+.contentCard {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+}
+
+/* --- Bulk Actions Bar --- */
+.bulkActionsBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #e3f2fd;
+  border: 1px solid #bbdefb;
+  border-radius: var(--border-radius);
+  margin-bottom: 1.5rem;
+}
+.bulkActionsBar span {
+  font-weight: 600;
+  color: #1e88e5;
+}
+.bulkButtons {
+  display: flex;
+  gap: 1rem;
+}
+.bulkEditButton,
+.bulkDeleteButton {
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  border: 1px solid;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.bulkEditButton {
+  background-color: #fff;
+  color: #1e88e5;
+  border-color: #1e88e5;
+}
+.bulkDeleteButton {
+  background-color: #ffebee;
+  color: #c62828;
+  border-color: #ffcdd2;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.inventoryTable {
+  width: 100%;
+  min-width: 800px;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.inventoryTable th,
+.inventoryTable td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border: 1px solid var(--color-border);
+  vertical-align: middle;
+  background: #fff;
+}
+
+.inventoryTable th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #f9fafb;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.inventoryTable tbody tr:last-child td {
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Column Widths for main table */
+.inventoryTable th:nth-child(1),
+.inventoryTable td:nth-child(1) {
+  width: 40px;
+  text-align: center;
+}
+.inventoryTable th:nth-child(2),
+.inventoryTable td:nth-child(2) {
+  min-width: 200px;
+}
+.inventoryTable th:nth-child(3),
+.inventoryTable td:nth-child(3) {
+  min-width: 120px;
+}
+.inventoryTable th:nth-child(4),
+.inventoryTable td:nth-child(4) {
+  min-width: 120px;
+}
+.inventoryTable th:nth-child(5),
+.inventoryTable td:nth-child(5) {
+  min-width: 120px;
+} /* Stock Quantity */
+.inventoryTable th:nth-child(6),
+.inventoryTable td:nth-child(6) {
+  min-width: 100px;
+} /* Status */
+.inventoryTable th:nth-child(7),
+.inventoryTable td:nth-child(7) {
+  min-width: 120px;
+  text-align: center;
+} /* Actions */
+
+.inventoryTable th input[type="checkbox"],
+.inventoryTable td input[type="checkbox"] {
+  accent-color: var(--color-primary);
+  width: 1.1em;
+  height: 1.1em;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+}
+
+.productCell {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.productImage {
+  border-radius: 6px;
+  object-fit: cover;
+}
+.productName {
+  font-weight: 600;
+  color: var(--color-text-base);
+}
+
+.stockInput {
+  width: 80px;
+  padding: 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  text-align: center;
+  font-weight: 600;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: #fff;
+}
+.stockInput:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(241, 102, 32, 0.2);
+}
+
+.statusBadge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-block;
+  text-align: center;
+  min-width: 90px;
+}
+
+.inStock {
+  background-color: #e0f2f1;
+  color: #00796b;
+}
+.outOfStock {
+  background-color: #ffebee;
+  color: #c62828;
+}
+.lowStock {
+  background-color: #fff3e0;
+  color: #ef6c00;
+}
+
+.secondaryButton {
+  background-color: #fff;
+  color: var(--color-text-base);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: 0.75rem 1.25rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s;
+}
+.secondaryButton:hover {
+  background-color: #f9fafb;
+}
+
+/* --- Multi-Location Stock Cell Styles --- */
+.stockCell {
+  position: relative;
+  cursor: pointer;
+}
+.totalStock {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+.locationIndicator {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.locationPopover {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  background-color: white;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  width: 280px;
+  padding: 0.5rem 0;
+}
+.popoverHeader {
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 0.5rem;
+}
+.locationRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+.locationRow span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+.popoverStockInput {
+  width: 70px;
+  padding: 0.4rem;
+  text-align: center;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+}
+
+/* --- Actions Cell --- */
+.actionsCell {
+  text-align: center;
+}
+.actionButton {
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 0.5rem;
+  margin: 0 0.25rem;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  transition: all 0.2s;
+}
+.actionButton:hover {
+  background-color: #f0f0f0;
+  color: var(--color-text-base);
+}
+.actionButton.active {
+  background-color: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+/* --- Details Row (replaces historyRow) --- */
+.detailsRow td {
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-top: none;
+}
+.detailsContainer {
+  background-color: #fdfdfe;
+  padding: 1.5rem;
+}
+.detailsTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+}
+
+/* --- History Table Responsive Wrapper --- */
+.historyTableWrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* --- History Table (UI FIXED) --- */
+.historyTable {
+  width: 100%;
+  min-width: 600px;
+  border-collapse: collapse;
+  background-color: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  table-layout: auto;
+}
+.historyTable th,
+.historyTable td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+.historyTable th {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  background-color: #f9fafb;
+}
+.historyTable tbody tr:last-child td {
+  border-bottom: none;
+}
+.historyTable th:nth-child(4),
+.historyTable td:nth-child(4),
+.historyTable th:nth-child(5),
+.historyTable td:nth-child(5) {
+  text-align: right;
+}
+
+/* --- Stock Change Color --- */
+.stockChangeIn {
+  color: #15803d;
+  font-weight: 600;
+}
+.stockChangeOut {
+  color: #c62828;
+  font-weight: 600;
+}
+
+/* --- Forecasting Styles --- */
+.forecastingContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.forecastingSummary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+.summaryCard {
+  background-color: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+}
+.summaryCard h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+.summaryCard p {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text-base);
+}
+.summaryCard.critical p {
+  color: #c62828;
+}
+.chartWrapper {
+  width: 100%;
+  height: 300px;
+}
+
+/* --- Modal Styles --- */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modalContent {
+  background-color: white;
+  border-radius: var(--border-radius);
+  width: 90%;
+  max-width: 700px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+.modalHeader h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+.closeButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-muted);
+}
+.modalBody {
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+.modalBody p {
+  margin-top: 0;
+  color: var(--color-text-muted);
+}
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--color-border);
+  background-color: #f9fafb;
+}
+
+/* --- Bulk Edit Table --- */
+.bulkEditTableWrapper {
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  margin-top: 1rem;
+}
+.bulkEditTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+.bulkEditTable th,
+.bulkEditTable td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+}
+.bulkEditTable th {
+  background-color: #f9fafb;
+  font-weight: 500;
+}
+.bulkEditTable tbody tr:last-child td {
+  border-bottom: none;
+}
+.bulkEditTable .stockInput {
+  width: 100px;
+}
+.productNameCell {
+  vertical-align: top;
+  font-weight: 600;
+}
+
+/* --- Primary Button (match footer) --- */
+.primaryButton {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.primaryButton:hover {
+  background-color: var(--color-primary-hover);
+}
+
+/* --- Responsive Styles --- */
+@media (max-width: 767px) {
+  .contentCard {
+    padding: 0.7rem;
+  }
+  .inventoryTable {
+    min-width: 600px;
+  }
+  .bulkActionsBar {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

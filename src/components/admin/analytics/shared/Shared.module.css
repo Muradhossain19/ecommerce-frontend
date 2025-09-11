@@ -52,9 +52,7 @@
   }
 }
 
-/* === Shared Components Styles === */
-
-/* === Shared Components Styles === */
+/* === Shared Components: FINAL & STABLE VERSION === */
 
 /* --- Layouts --- */
 .statsGrid {
@@ -69,6 +67,14 @@
   gap: 1.5rem;
   margin-bottom: 1.5rem;
 }
+
+.balancedGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Customer, Product, Traffic পেজের জন্য */
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
 .bottomGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -168,21 +174,20 @@
   font-weight: 600;
 }
 
-/* --- NEW: Simple DataTable for better UX --- */
+/* --- Simple DataTable (General Styles) --- */
 .simpleDataTable {
   width: 100%;
   border-collapse: collapse;
 }
 .simpleDataTable th,
 .simpleDataTable td {
-  padding: 0.75rem 1rem; /* আগের প্যাডিং ফিরিয়ে আনা হয়েছে */
+  padding: 0.75rem 1rem;
   text-align: left;
   border-bottom: 1px solid var(--color-border);
-  white-space: nowrap;
-  font-size: 0.9rem; /* ফন্ট সাইজ ঠিক করা হয়েছে */
+  font-size: 0.9rem;
 }
 .simpleDataTable thead {
-  background-color: #f9fafb; /* হালকা হেডার ব্যাকগ্রাউন্ড */
+  background-color: #f9fafb;
 }
 .simpleDataTable th {
   font-size: 0.85rem;
@@ -192,14 +197,14 @@
 .simpleDataTable tbody tr:last-child td {
   border-bottom: none;
 }
-/* অল্টারনেটিং রো কালার - শুধুমাত্র দ্বিতীয়, চতুর্থ, ইত্যাদি রো-তে */
 .simpleDataTable tbody tr:nth-child(even) {
   background-color: #f9fafb;
 }
 .simpleDataTable tbody tr:hover {
-  background-color: #f0f2f5; /* হোভার ইফেক্ট */
+  background-color: #f0f2f5;
 }
 
+/* --- Custom Cell Styles (Reusable) --- */
 .sourceCell {
   display: flex;
   align-items: center;
@@ -210,7 +215,11 @@
   color: var(--color-text-muted);
 }
 .numericCell {
-  font-weight: 500;
+  text-align: right;
+}
+.lowStockValue {
+  color: var(--color-primary);
+  font-weight: 700;
 }
 
 /* --- Responsive Styles --- */
@@ -219,7 +228,8 @@
     grid-template-columns: repeat(2, 1fr);
   }
   .analyticsGrid,
-  .bottomGrid {
+  .bottomGri,
+  .balancedGrid {
     grid-template-columns: 1fr;
   }
 }

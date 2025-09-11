@@ -1,0 +1,274 @@
+.allProductsPage {
+  padding: 0.2rem;
+}
+
+.primaryButton {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s;
+}
+.primaryButton:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.secondaryButton {
+  background-color: #fff;
+  color: var(--color-text-base);
+  border: 1px solid var(--color-border);
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s;
+}
+.secondaryButton:hover {
+  background-color: #f9fafb;
+}
+
+.contentCard {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.productsTable {
+  width: 100%;
+  min-width: 700px; /* Ensures horizontal scroll on small screens */
+  border-collapse: collapse;
+  table-layout: auto; /* Responsive columns */
+}
+
+.productsTable th,
+.productsTable td {
+  padding: 0.5rem 1rem;
+  text-align: left;
+  border: 1px solid var(--color-border);
+  vertical-align: middle;
+  background: #fff;
+}
+
+.productsTable th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #f9fafb;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Responsive column widths */
+.productsTable th:nth-child(1),
+.productsTable td:nth-child(1) {
+  width: 40px;
+  min-width: 40px;
+  max-width: 60px;
+}
+.productsTable th:nth-child(2),
+.productsTable td:nth-child(2) {
+  width: 220px;
+  min-width: 180px;
+  max-width: 350px;
+}
+.productsTable th:nth-child(3),
+.productsTable td:nth-child(3) {
+  width: 100px;
+  min-width: 80px;
+  max-width: 120px;
+}
+.productsTable th:nth-child(4),
+.productsTable td:nth-child(4) {
+  width: 90px;
+  min-width: 70px;
+  max-width: 110px;
+}
+.productsTable th:nth-child(5),
+.productsTable td:nth-child(5) {
+  width: 120px;
+  min-width: 90px;
+  max-width: 140px;
+}
+.productsTable th:nth-child(6),
+.productsTable td:nth-child(6) {
+  width: 140px;
+  min-width: 110px;
+  max-width: 180px;
+}
+
+.productsTable th {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.productCell {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.productImage {
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.productInfo {
+  min-width: 250px;
+}
+
+.productName {
+  font-weight: 600;
+  color: var(--color-text-base);
+  font-size: 0.9rem;
+}
+
+.productMeta {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-top: 0.25rem;
+}
+
+.price {
+  font-weight: 500;
+}
+.styleCount {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.stock {
+  font-weight: 500;
+}
+
+.statusBadge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.inStock {
+  background-color: #e0f2f1;
+  color: #00796b;
+}
+.outOfStock {
+  background-color: #ffebee;
+  color: #c62828;
+}
+.lowStock {
+  background-color: #fff3e0;
+  color: #ef6c00;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 0.5rem;
+}
+.editButton,
+.deleteButton {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 1px solid;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.editButton {
+  background-color: #e3f2fd;
+  color: #1e88e5;
+  border-color: #bbdefb;
+}
+.deleteButton {
+  background-color: #ffebee;
+  color: #c62828;
+  border-color: #ffcdd2;
+}
+
+/* Responsive styles for tablet (<=1024px) */
+@media (max-width: 1024px) {
+  .productsTable th:nth-child(2), /* Product */
+  .productsTable td:nth-child(2) {
+    width: 32%;
+    min-width: 160px;
+  }
+  .productsTable th:nth-child(3), /* Price */
+  .productsTable td:nth-child(3) {
+    width: 13%;
+  }
+  .productsTable th:nth-child(4), /* Stock */
+  .productsTable td:nth-child(4) {
+    width: 13%;
+  }
+  .productsTable th:nth-child(5), /* Status */
+  .productsTable td:nth-child(5) {
+    width: 15%;
+  }
+  .productsTable th:nth-child(6), /* Action */
+  .productsTable td:nth-child(6) {
+    width: 20%;
+  }
+  .productInfo {
+    min-width: 140px;
+  }
+}
+
+/* Responsive styles for mobile (<=767px) */
+@media (max-width: 767px) {
+  .contentCard {
+    padding: 0.7rem;
+  }
+  .productsTable {
+    min-width: 600px;
+    font-size: 0.92rem;
+  }
+  .productsTable th,
+  .productsTable td {
+    padding: 0.35rem 0.5rem;
+    font-size: 0.92rem;
+  }
+  .productsTable th:nth-child(2),
+  .productsTable td:nth-child(2) {
+    width: 40vw;
+    min-width: 120px;
+    max-width: 180px;
+  }
+  .productsTable th:nth-child(3),
+  .productsTable td:nth-child(3),
+  .productsTable th:nth-child(4),
+  .productsTable td:nth-child(4),
+  .productsTable th:nth-child(5),
+  .productsTable td:nth-child(5),
+  .productsTable th:nth-child(6),
+  .productsTable td:nth-child(6) {
+    width: auto;
+    min-width: 60px;
+    max-width: 100px;
+  }
+  .productInfo {
+    min-width: 100px;
+  }
+  .actionButtons {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+}

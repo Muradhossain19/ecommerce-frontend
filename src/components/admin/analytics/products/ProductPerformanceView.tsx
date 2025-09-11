@@ -9,14 +9,14 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  Legend,
 } from "recharts";
 import { AnalyticsPageLayout } from "../layouts/AnalyticsPageLayout";
 import { StatCard } from "../shared/StatCard";
 import { ChartCard } from "../shared/ChartCard";
-import styles from "../shared/Shared.module.css"; // কমন স্টাইল ব্যবহার করছি
+import { DataTable, Column } from "../shared/DataTable"; // DataTable ইম্পোর্ট
+import styles from "../shared/Shared.module.css";
 
-// Sample Data (বাস্তব অ্যাপ্লিকেশনে এপিআই থেকে আসবে)
+// --- ডেটা সেট (id সহ) ---
 const productStats = [
   {
     title: "Total Products",
@@ -45,7 +45,6 @@ const productStats = [
     period: "new alerts",
   },
 ];
-
 const topViewedProducts = [
   { name: "Nike Air Jordan", views: 15000 },
   { name: "Leather Watch", views: 12500 },
@@ -53,7 +52,6 @@ const topViewedProducts = [
   { name: "Sony Headphone", views: 9800 },
   { name: "Smart Thermos", views: 8500 },
 ];
-
 const bestSellingProducts = [
   {
     id: "PROD-001",
@@ -74,11 +72,37 @@ const bestSellingProducts = [
     totalRevenue: "$12,750",
   },
 ];
-
 const lowStockProducts = [
   { id: "PROD-004", name: "Smart Thermos", stock: 8, avgDailySale: 5 },
   { id: "PROD-005", name: "Yoga Mat", stock: 5, avgDailySale: 2 },
   { id: "PROD-006", name: "Organic Green Tea", stock: 12, avgDailySale: 10 },
+];
+
+// --- কলাম ডেফিনিশন (className সহ) ---
+const bestSellingColumns: Column<(typeof bestSellingProducts)[0]>[] = [
+  { key: "name", title: "Product Name" },
+  { key: "unitsSold", title: "Units Sold", className: styles.numericCell },
+  {
+    key: "totalRevenue",
+    title: "Total Revenue",
+    className: styles.numericCell,
+  },
+];
+const lowStockColumns: Column<(typeof lowStockProducts)[0]>[] = [
+  { key: "name", title: "Product Name" },
+  {
+    key: "stock",
+    title: "Stock Left",
+    render: (item) => (
+      <span className={styles.lowStockValue}>{item.stock}</span>
+    ),
+    className: styles.numericCell,
+  },
+  {
+    key: "avgDailySale",
+    title: "Avg. Daily Sale",
+    className: styles.numericCell,
+  },
 ];
 
 export const ProductPerformanceView: React.FC = () => {
@@ -89,14 +113,7 @@ export const ProductPerformanceView: React.FC = () => {
     >
       <div className={styles.statsGrid}>
         {productStats.map((stat) => (
-          <StatCard
-            key={stat.title}
-            title={stat.title}
-            value={stat.value}
-            change={stat.change}
-            trend={stat.trend}
-            period={stat.period}
-          />
+          <StatCard key={stat.title} {...stat} />
         ))}
       </div>
 
@@ -134,50 +151,17 @@ export const ProductPerformanceView: React.FC = () => {
         </ResponsiveContainer>
       </ChartCard>
 
-      <div className={styles.analyticsGrid}>
-        <div className={styles.tableCard}>
-          <h4 className={styles.chartTitle}>Best Selling Products</h4>
-          <table className={styles.dataTable}>
-            <thead>
-              <tr>
-                <th>Product Name</th>
-                <th>Units Sold</th>
-                <th>Total Revenue</th>
-              </tr>
-            </thead>
-            <tbody>
-              {bestSellingProducts.map((product) => (
-                <tr key={product.id}>
-                  <td>{product.name}</td>
-                  <td>{product.unitsSold}</td>
-                  <td>{product.totalRevenue}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        <div className={styles.tableCard}>
-          <h4 className={styles.chartTitle}>Products Low in Stock</h4>
-          <table className={styles.dataTable}>
-            <thead>
-              <tr>
-                <th>Product Name</th>
-                <th>Stock Left</th>
-                <th>Avg. Daily Sale</th>
-              </tr>
-            </thead>
-            <tbody>
-              {lowStockProducts.map((product) => (
-                <tr key={product.id}>
-                  <td>{product.name}</td>
-                  <td className={styles.lowStockValue}>{product.stock}</td>
-                  <td>{product.avgDailySale}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+      <div className={styles.balancedGrid} style={{ marginTop: "1.5rem" }}>
+        <DataTable
+          title="Best Selling Products"
+          columns={bestSellingColumns}
+          data={bestSellingProducts}
+        />
+        <DataTable
+          title="Products Low in Stock"
+          columns={lowStockColumns}
+          data={lowStockProducts}
+        />
       </div>
     </AnalyticsPageLayout>
   );

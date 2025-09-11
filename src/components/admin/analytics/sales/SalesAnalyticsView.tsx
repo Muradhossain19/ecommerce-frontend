@@ -20,7 +20,7 @@ import { ChartCard } from "../shared/ChartCard";
 import { DataTable, Column } from "../shared/DataTable";
 import styles from "../shared/Shared.module.css";
 
-// --- ডেটা সেট (UPDATED) ---
+// --- ডেটা সেট ---
 const statsData = [
   {
     title: "Total Sales",
@@ -93,11 +93,13 @@ const topProductsData = [
     totalRevenue: "$2,475",
   },
 ];
+
+// --- কলাম ডেফিনিশন (className সহ) ---
 const productColumns: Column<(typeof topProductsData)[0]>[] = [
   { key: "name", title: "Product Name" },
-  { key: "quantity", title: "Qty Sold" },
-  { key: "totalSales", title: "Total Sales" },
-  { key: "totalRevenue", title: "Revenue" },
+  { key: "quantity", title: "Qty Sold", className: styles.numericCell },
+  { key: "totalSales", title: "Total Sales", className: styles.numericCell },
+  { key: "totalRevenue", title: "Revenue", className: styles.numericCell },
 ];
 
 export const SalesAnalyticsView: React.FC = () => {
@@ -108,7 +110,6 @@ export const SalesAnalyticsView: React.FC = () => {
           <StatCard key={stat.title} {...stat} />
         ))}
       </div>
-
       <div className={styles.analyticsGrid}>
         <ChartCard title="Sales & Profit Over Time">
           <ResponsiveContainer width="100%" height="100%">
@@ -143,8 +144,6 @@ export const SalesAnalyticsView: React.FC = () => {
             </BarChart>
           </ResponsiveContainer>
         </ChartCard>
-
-        {/* --- NEW: Sales by Category (Pie Chart with Legend Below) --- */}
         <ChartCard title="Sales by Category">
           <div className={styles.pieChartWithLegend}>
             <div className={styles.pieChartContainer}>
@@ -173,7 +172,7 @@ export const SalesAnalyticsView: React.FC = () => {
                   <span
                     className={styles.pieLegendColorBox}
                     style={{ backgroundColor: entry.color }}
-                  ></span>
+                  />
                   <span className={styles.pieLegendLabel}>{entry.name}</span>
                   <span className={styles.pieLegendValue}>{entry.value}%</span>
                 </div>
@@ -182,9 +181,7 @@ export const SalesAnalyticsView: React.FC = () => {
           </div>
         </ChartCard>
       </div>
-
       <div className={styles.bottomGrid}>
-        {/* --- NEW: Payment Methods as Pie Chart --- */}
         <ChartCard title="Payment Methods">
           <div className={styles.pieChartWithLegend}>
             <div className={styles.pieChartContainer}>
@@ -213,7 +210,7 @@ export const SalesAnalyticsView: React.FC = () => {
                   <span
                     className={styles.pieLegendColorBox}
                     style={{ backgroundColor: entry.color }}
-                  ></span>
+                  />
                   <span className={styles.pieLegendLabel}>{entry.name}</span>
                   <span className={styles.pieLegendValue}>{entry.value}%</span>
                 </div>
@@ -221,7 +218,6 @@ export const SalesAnalyticsView: React.FC = () => {
             </div>
           </div>
         </ChartCard>
-
         <DataTable
           title="Top Products by Sale"
           columns={productColumns}

@@ -1,0 +1,279 @@
+.allCategoriesPage {
+  padding: 0.2rem;
+}
+
+.primaryButton,
+.secondaryButton {
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.primaryButton {
+  background-color: var(--color-primary);
+  color: white;
+}
+.primaryButton:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.secondaryButton {
+  background-color: #fff;
+  color: var(--color-text-base);
+  border: 1px solid var(--color-border);
+}
+.secondaryButton:hover {
+  background-color: #f9fafb;
+}
+
+.contentCard {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.categoriesTable {
+  width: 100%;
+  min-width: 700px; /* All Products-এর মতো */
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.categoriesTable th,
+.categoriesTable td {
+  padding: 0.5rem 1rem;
+  text-align: left;
+  border: 1px solid var(--color-border);
+  vertical-align: middle;
+  background: #fff;
+}
+
+.categoriesTable th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #f9fafb;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Responsive column widths (optional, adjust as needed) */
+.categoriesTable th:nth-child(1),
+.categoriesTable td:nth-child(1) {
+  width: 40px;
+  min-width: 40px;
+  max-width: 60px;
+}
+.categoriesTable th:nth-child(2),
+.categoriesTable td:nth-child(2) {
+  width: 220px;
+  min-width: 180px;
+  max-width: 350px;
+}
+.categoriesTable th:nth-child(3),
+.categoriesTable td:nth-child(3) {
+  width: 180px;
+  min-width: 120px;
+  max-width: 250px;
+}
+.categoriesTable th:nth-child(4),
+.categoriesTable td:nth-child(4) {
+  width: 120px;
+  min-width: 90px;
+  max-width: 140px;
+}
+.categoriesTable th:nth-child(5),
+.categoriesTable td:nth-child(5) {
+  width: 90px;
+  min-width: 70px;
+  max-width: 110px;
+}
+.categoriesTable th:nth-child(6),
+.categoriesTable td:nth-child(6) {
+  width: 100px;
+  min-width: 80px;
+  max-width: 80px;
+}
+.categoriesTable th:nth-child(7),
+.categoriesTable td:nth-child(7) {
+  width: 140px;
+  min-width: 110px;
+  max-width: 180px;
+}
+
+.categoryCell {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.categoryImage {
+  border-radius: 6px;
+  object-fit: cover;
+  border: none;
+}
+
+.categoryInfo {
+  min-width: 120px;
+}
+
+.categoryName {
+  font-weight: 600;
+  color: var(--color-text-base);
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.hierarchyIndicator {
+  color: var(--color-text-muted);
+  margin-right: 0.5rem;
+}
+
+.descriptionCell {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  max-width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.iconButton {
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  transition: all 0.2s;
+}
+.iconButton:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.iconButton.featured {
+  color: #f59e0b;
+  border-color: #f59e0b;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.editButton,
+.deleteButton {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 1px solid;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.editButton {
+  background-color: #e3f2fd;
+  color: #1e88e5;
+  border-color: #bbdefb;
+}
+.deleteButton {
+  background-color: #ffebee;
+  color: #c62828;
+  border-color: #ffcdd2;
+}
+
+/* Responsive styles for tablet (<=1024px) */
+@media (max-width: 1024px) {
+  .categoriesTable th:nth-child(2),
+  .categoriesTable td:nth-child(2) {
+    width: 32%;
+    min-width: 160px;
+  }
+  .categoriesTable th:nth-child(3),
+  .categoriesTable td:nth-child(3) {
+    width: 13%;
+  }
+  .categoriesTable th:nth-child(4),
+  .categoriesTable td:nth-child(4) {
+    width: 13%;
+  }
+  .categoriesTable th:nth-child(5),
+  .categoriesTable td:nth-child(5) {
+    width: 15%;
+  }
+  .categoriesTable th:nth-child(6),
+  .categoriesTable td:nth-child(6) {
+    width: 15%;
+  }
+  .categoriesTable th:nth-child(7),
+  .categoriesTable td:nth-child(7) {
+    width: 20%;
+  }
+  .categoryInfo {
+    min-width: 100px;
+  }
+}
+
+/* Responsive styles for mobile (<=767px) */
+@media (max-width: 767px) {
+  .contentCard {
+    padding: 0.7rem;
+  }
+  .categoriesTable {
+    min-width: 600px;
+    font-size: 0.92rem;
+  }
+  .categoriesTable th,
+  .categoriesTable td {
+    padding: 0.35rem 0.5rem;
+    font-size: 0.92rem;
+  }
+  .categoriesTable th:nth-child(2),
+  .categoriesTable td:nth-child(2) {
+    width: 40vw;
+    min-width: 120px;
+    max-width: 180px;
+  }
+  .categoriesTable th:nth-child(3),
+  .categoriesTable td:nth-child(3),
+  .categoriesTable th:nth-child(4),
+  .categoriesTable td:nth-child(4),
+  .categoriesTable th:nth-child(5),
+  .categoriesTable td:nth-child(5),
+  .categoriesTable th:nth-child(6),
+  .categoriesTable td:nth-child(6),
+  .categoriesTable th:nth-child(7),
+  .categoriesTable td:nth-child(7) {
+    width: auto;
+    min-width: 60px;
+    max-width: 100px;
+  }
+  .categoryInfo {
+    min-width: 80px;
+  }
+  .actionButtons {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+}

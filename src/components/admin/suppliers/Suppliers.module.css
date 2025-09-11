@@ -1,0 +1,144 @@
+.suppliersPage {
+  padding: 0.2rem;
+}
+
+.contentCard {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+}
+
+/* --- Buttons (reusing from other modules for consistency) --- */
+.primaryButton,
+.secondaryButton {
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s;
+}
+.primaryButton {
+  background-color: var(--color-primary);
+  color: white;
+}
+.primaryButton:hover {
+  background-color: var(--color-primary-hover);
+}
+.secondaryButton {
+  background-color: #fff;
+  color: var(--color-text-base);
+  border: 1px solid var(--color-border);
+}
+.secondaryButton:hover {
+  background-color: #f9fafb;
+}
+
+/* --- Table Styles --- */
+.tableWrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.suppliersTable {
+  width: 100%;
+  min-width: 750px;
+  border-collapse: collapse;
+}
+
+.suppliersTable th,
+.suppliersTable td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: middle;
+}
+
+.suppliersTable th {
+  background: #f9fafb;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.suppliersTable th:first-child,
+.suppliersTable td:first-child {
+  width: 40px;
+  text-align: center;
+}
+
+.supplierCell {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.supplierName {
+  font-weight: 600;
+}
+.companyName {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.contactInfo {
+  font-size: 0.9rem;
+  margin: 0.2rem 0;
+}
+
+.productCount {
+  font-weight: 500;
+}
+
+.statusBadge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.activeStatus {
+  background-color: #e0f2f1;
+  color: #00796b;
+}
+.inactiveStatus {
+  background-color: #f1f1f1;
+  color: #616161;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 0.5rem;
+}
+.editButton,
+.moreButton {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.editButton {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+}

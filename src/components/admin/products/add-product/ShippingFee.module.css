@@ -1,0 +1,67 @@
+/* --- Section Layout --- */
+.formSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border);
+  margin: 1.5rem 0 0 0; /* Add margin top for separation */
+}
+.formSection > .sectionTitle:first-of-type {
+  margin-top: 0; /* Remove margin from the very first title */
+}
+
+.sectionSubtitle {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-top: -1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* --- Grid for Form Fields --- */
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+/* --- Form Group and Fields --- */
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formLabel {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-base);
+}
+
+.formInput {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+  font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.formInput:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(241, 102, 32, 0.2);
+}
+
+/* --- Responsive Styles --- */
+@media (max-width: 768px) {
+  .formGrid {
+    grid-template-columns: 1fr; /* Stack columns on smaller screens */
+  }
+}

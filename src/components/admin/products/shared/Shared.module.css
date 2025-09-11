@@ -1,0 +1,158 @@
+/* === PageHeader Styles === */
+.pageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.pageTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-text-base);
+}
+.pageSubtitle {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-top: 0.25rem;
+}
+.headerActions {
+  display: flex;
+  gap: 1rem;
+}
+
+/* === FilterBar Styles === */
+.filterBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.searchWrapper {
+  position: relative;
+  flex-grow: 1;
+  max-width: 400px;
+}
+.searchIcon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-muted);
+}
+.searchInput {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+}
+.filterActions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.sortWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+.sortSelect {
+  border: none;
+  background: none;
+  font-weight: 500;
+  color: var(--color-text-base);
+  cursor: pointer;
+}
+.filterButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  background-color: #fff;
+  cursor: pointer;
+}
+
+/* === Tiptap Editor Styles === */
+.tiptapWrapper {
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.editorToolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem; /* gap বাড়ানো হলো */
+  padding: 0.7rem 1rem;
+  background-color: #f9fafb;
+  border-bottom: 1px solid var(--color-border);
+  align-items: center;
+}
+
+.toolbarGroup {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  border-right: 1px solid #e5e7eb;
+  padding-right: 1rem;
+  margin-right: 1rem;
+}
+
+.toolbarGroup:last-child {
+  border-right: none;
+  margin-right: 0;
+  padding-right: 0;
+}
+
+.editorToolbar button {
+  background: none;
+  border: none;
+  padding: 0.3rem 0.4rem;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  font-size: 1.08rem;
+  transition: background-color 0.18s, color 0.18s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editorToolbar button:hover,
+.editorToolbar button.active {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+.tiptapEditor {
+  padding: 0.75rem 1rem;
+  min-height: 220px; /* আগে যা ছিল তার চেয়ে বড় করুন */
+  max-height: 500px;
+  overflow-y: auto;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.tiptapEditor:focus {
+  outline: none;
+}
+
+/* Placeholder স্টাইল */
+.tiptapEditor p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: #adb5bd;
+  pointer-events: none;
+  height: 0;
+}

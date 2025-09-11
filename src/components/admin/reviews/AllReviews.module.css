@@ -1,0 +1,322 @@
+.allReviewsPage {
+  padding: 0.2rem;
+}
+
+.contentCard {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+}
+
+/* --- Bulk Actions Bar --- */
+.bulkActionsBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #eef2ff; /* Indigo light */
+  border: 1px solid #c7d2fe;
+  border-radius: var(--border-radius);
+  margin-bottom: 1.5rem;
+}
+.bulkActionsBar span {
+  font-weight: 600;
+  color: #4338ca; /* Indigo dark */
+}
+.bulkButtons {
+  display: flex;
+  gap: 1rem;
+}
+.bulkApproveButton,
+.bulkSpamButton,
+.bulkDeleteButton {
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  border: 1px solid;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.bulkApproveButton {
+  background-color: #dcfce7;
+  color: #16a34a;
+  border-color: #bbf7d0;
+}
+.bulkSpamButton {
+  background-color: #feefc3;
+  color: #f59e0b;
+  border-color: #fde68a;
+}
+.bulkDeleteButton {
+  background-color: #ffebee;
+  color: #c62828;
+  border-color: #ffcdd2;
+}
+
+/* --- Table Styles (All Categories style) --- */
+.tableWrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.reviewsTable {
+  width: 100%;
+  min-width: 900px;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #fff;
+  border-radius: var(--border-radius);
+  box-shadow: 0 1px 2px rgba(16, 30, 54, 0.04);
+  table-layout: auto;
+}
+
+.reviewsTable th,
+.reviewsTable td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: middle;
+  background: #fff;
+}
+
+.reviewsTable th {
+  background: #f9fafb;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  white-space: nowrap;
+  border-top: 1px solid var(--color-border);
+}
+
+/* --- Responsive column widths (All Categories style) --- */
+.reviewsTable th:nth-child(1),
+.reviewsTable td:nth-child(1) {
+  width: 40px;
+  min-width: 40px;
+  max-width: 60px;
+  text-align: center;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.reviewsTable th:nth-child(2),
+.reviewsTable td:nth-child(2) {
+  width: 180px;
+  min-width: 140px;
+  max-width: 250px;
+}
+.reviewsTable th:nth-child(3),
+.reviewsTable td:nth-child(3) {
+  width: 320px;
+  min-width: 180px;
+  max-width: 400px;
+}
+.reviewsTable th:nth-child(4),
+.reviewsTable td:nth-child(4) {
+  width: 200px;
+  min-width: 120px;
+  max-width: 250px;
+}
+.reviewsTable th:nth-child(5),
+.reviewsTable td:nth-child(5) {
+  width: 120px;
+  min-width: 90px;
+  max-width: 140px;
+}
+.reviewsTable th:nth-child(6),
+.reviewsTable td:nth-child(6) {
+  width: 180px;
+  min-width: 110px;
+  max-width: 200px;
+}
+
+/* --- Checkbox style (centered, small) --- */
+.reviewsTable th input[type="checkbox"],
+.reviewsTable td input[type="checkbox"] {
+  accent-color: var(--color-primary);
+  width: 1.1em;
+  height: 1.1em;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+}
+
+/* --- Responsive styles for tablet (<=1024px) --- */
+@media (max-width: 1024px) {
+  .reviewsTable th:nth-child(2),
+  .reviewsTable td:nth-child(2) {
+    width: 20vw;
+    min-width: 120px;
+  }
+  .reviewsTable th:nth-child(3),
+  .reviewsTable td:nth-child(3) {
+    width: 30vw;
+    min-width: 120px;
+  }
+  .reviewsTable th:nth-child(4),
+  .reviewsTable td:nth-child(4) {
+    width: 18vw;
+    min-width: 100px;
+  }
+  .reviewsTable th:nth-child(5),
+  .reviewsTable td:nth-child(5) {
+    width: 12vw;
+    min-width: 80px;
+  }
+  .reviewsTable th:nth-child(6),
+  .reviewsTable td:nth-child(6) {
+    width: 18vw;
+    min-width: 90px;
+  }
+}
+
+/* --- Responsive styles for mobile (<=767px) --- */
+@media (max-width: 767px) {
+  .contentCard {
+    padding: 0.7rem;
+  }
+  .reviewsTable {
+    min-width: 600px;
+    font-size: 0.92rem;
+  }
+  .reviewsTable th,
+  .reviewsTable td {
+    padding: 0.35rem 0.5rem;
+    font-size: 0.92rem;
+  }
+  .reviewsTable th:nth-child(2),
+  .reviewsTable td:nth-child(2) {
+    width: 30vw;
+    min-width: 80px;
+    max-width: 120px;
+  }
+  .reviewsTable th:nth-child(3),
+  .reviewsTable td:nth-child(3) {
+    width: 40vw;
+    min-width: 120px;
+    max-width: 180px;
+  }
+  .reviewsTable th:nth-child(4),
+  .reviewsTable td:nth-child(4),
+  .reviewsTable th:nth-child(5),
+  .reviewsTable td:nth-child(5),
+  .reviewsTable th:nth-child(6),
+  .reviewsTable td:nth-child(6) {
+    width: auto;
+    min-width: 60px;
+    max-width: 100px;
+  }
+}
+
+/* --- Star Rating --- */
+.starRating {
+  display: flex;
+  gap: 0.1rem;
+}
+.starFilled {
+  color: #f59e0b;
+}
+.starEmpty {
+  color: #d1d5db;
+}
+
+/* --- Status Badge --- */
+.statusBadge {
+  display: inline-block;
+  padding: 0.2em 0.9em;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 0.3em;
+  margin-bottom: 0.2em;
+}
+.approved {
+  background: #e0f2f1;
+  color: #00796b;
+}
+.pending {
+  background: #fff3e0;
+  color: #ef6c00;
+}
+.spam {
+  background: #ffebee;
+  color: #c62828;
+}
+
+/* --- Action Buttons --- */
+.actionButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.actionButton {
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 500;
+  background-color: #fff;
+  transition: all 0.2s;
+}
+.actionButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+.approveAction {
+  color: #16a34a;
+  border-color: #bbf7d0;
+}
+.replyAction {
+  color: #2563eb;
+  border-color: #bfdbfe;
+}
+.spamAction {
+  color: #f59e0b;
+  border-color: #fde68a;
+}
+.deleteAction {
+  color: #dc2626;
+  border-color: #fecaca;
+}
+
+/* Responsive Styles */
+@media (max-width: 767px) {
+  .contentCard {
+    padding: 0.7rem;
+  }
+  .reviewsTable {
+    min-width: 600px;
+    font-size: 0.92rem;
+  }
+  .reviewsTable th,
+  .reviewsTable td {
+    padding: 0.35rem 0.5rem;
+    font-size: 0.92rem;
+  }
+  .reviewsTable th:nth-child(2),
+  .reviewsTable td:nth-child(2) {
+    width: 30vw;
+    min-width: 80px;
+    max-width: 120px;
+  }
+  .reviewsTable th:nth-child(3),
+  .reviewsTable td:nth-child(3) {
+    width: 40vw;
+    min-width: 120px;
+    max-width: 180px;
+  }
+  .reviewsTable th:nth-child(4),
+  .reviewsTable td:nth-child(4),
+  .reviewsTable th:nth-child(5),
+  .reviewsTable td:nth-child(5),
+  .reviewsTable th:nth-child(6),
+  .reviewsTable td:nth-child(6) {
+    width: auto;
+    min-width: 60px;
+    max-width: 100px;
+  }
+}
