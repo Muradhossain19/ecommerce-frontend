@@ -1,0 +1,230 @@
+/* === Shared Components Styles === */
+/* === Shared Components Styles (e.g., FilterBar) === */
+
+.filters {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.dateRangePicker {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #fff;
+  border: 1px solid var(--color-border);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.dateRangePicker:hover {
+  background-color: #f9fafb;
+}
+
+.exportButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.exportButton:hover {
+  background-color: var(--color-primary-hover);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .filters {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* === Shared Components Styles === */
+
+/* === Shared Components Styles === */
+
+/* --- Layouts --- */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.analyticsGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.bottomGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+/* --- StatCard --- */
+.statCard {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+}
+.statTitle {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.5rem;
+}
+.statValue {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-text-base);
+  margin-bottom: 0.75rem;
+}
+.statComparison {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.trendUp {
+  color: #10b981;
+}
+.trendDown {
+  color: #ef4444;
+}
+
+/* --- ChartCard & Generic Card --- */
+.card,
+.chartCard,
+.tableCard {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+.chartHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.chartTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text-base);
+}
+.chartContainer {
+  height: 300px;
+  flex-grow: 1;
+}
+
+/* --- Pie Chart with Legend Below --- */
+.pieChartWithLegend {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.pieChartContainer {
+  flex-grow: 1;
+}
+.pieLegendContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+.pieLegendItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+.pieLegendColorBox {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+.pieLegendLabel {
+  color: var(--color-text-muted);
+}
+.pieLegendValue {
+  font-weight: 600;
+}
+
+/* --- NEW: Simple DataTable for better UX --- */
+.simpleDataTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+.simpleDataTable th,
+.simpleDataTable td {
+  padding: 0.75rem 1rem; /* আগের প্যাডিং ফিরিয়ে আনা হয়েছে */
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+  font-size: 0.9rem; /* ফন্ট সাইজ ঠিক করা হয়েছে */
+}
+.simpleDataTable thead {
+  background-color: #f9fafb; /* হালকা হেডার ব্যাকগ্রাউন্ড */
+}
+.simpleDataTable th {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+.simpleDataTable tbody tr:last-child td {
+  border-bottom: none;
+}
+/* অল্টারনেটিং রো কালার - শুধুমাত্র দ্বিতীয়, চতুর্থ, ইত্যাদি রো-তে */
+.simpleDataTable tbody tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+.simpleDataTable tbody tr:hover {
+  background-color: #f0f2f5; /* হোভার ইফেক্ট */
+}
+
+.sourceCell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 500;
+}
+.sourceIcon {
+  color: var(--color-text-muted);
+}
+.numericCell {
+  font-weight: 500;
+}
+
+/* --- Responsive Styles --- */
+@media (max-width: 1200px) {
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .analyticsGrid,
+  .bottomGrid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+}
