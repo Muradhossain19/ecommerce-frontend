@@ -1,0 +1,244 @@
+/* === Admin Header Styles === */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  background-color: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
+  height: 65px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 900;
+}
+
+/* --- Left Section --- */
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.toggleButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  transition: background-color 0.2s ease;
+}
+.toggleButton:hover {
+  background-color: #f0f0f0;
+}
+
+.hamburgerButton {
+  display: none;
+}
+
+/* --- Right Section --- */
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+/* Search Bar */
+.searchWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.searchIcon {
+  position: absolute;
+  left: 12px;
+  color: var(--color-text-muted);
+}
+.searchInput {
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: 0.5rem 0.75rem 0.5rem 2.5rem;
+  width: 250px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+.searchInput:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(241, 102, 32, 0.2);
+}
+
+/* Date Display */
+.dateDisplay {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* --- Dropdown System (IMPORTANT FIX) --- */
+.dropdownContainer {
+  position: relative; /* <-- এই লাইনটি যোগ করা হয়েছে */
+}
+
+/* Icon Buttons */
+.iconButton {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.iconButton:hover {
+  background-color: #f0f0f0;
+  color: var(--color-primary);
+}
+.badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--color-primary);
+  color: white;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+/* Profile Section */
+.profile {
+  /* position: relative; is now in .dropdownContainer */
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.profileAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.profileInfo {
+  margin-left: 0.75rem;
+  line-height: 1.4;
+}
+.profileName {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-text-base);
+}
+.profileRole {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+/* Generic Dropdown Menu */
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background-color: white;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 220px;
+  padding: 0.5rem;
+  z-index: 1010;
+  opacity: 0;
+  transform: translateY(-10px);
+  visibility: hidden;
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+}
+.dropdownMenu.open {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.dropdownHeader {
+  padding: 0.5rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 0.5rem;
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 6px;
+  text-align: left;
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--color-text-base);
+  font-family: inherit;
+}
+.dropdownItem:hover {
+  background-color: #f0f0f0;
+}
+.dropdownDivider {
+  height: 1px;
+  background-color: var(--color-border);
+  margin: 0.5rem 0;
+  border: none;
+}
+.logoutItem {
+  color: #e53e3e;
+}
+.logoutItem:hover {
+  background-color: #fef2f2;
+}
+
+/* --- Responsive Styles --- */
+@media (max-width: 1024px) {
+  .searchInput {
+    width: 180px;
+  }
+  .dateDisplay {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 0 1rem;
+    gap: 0.5rem;
+  }
+  .hamburgerButton {
+    display: flex;
+  }
+  .sidebarToggleButton {
+    display: none;
+  }
+  .profileInfo,
+  .searchWrapper {
+    display: none;
+  }
+  .headerRight {
+    gap: 0.5rem;
+  }
+}

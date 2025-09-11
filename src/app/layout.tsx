@@ -3,9 +3,6 @@
 import type { Metadata, Viewport } from "next";
 
 import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import MobileBottomNav from "@/components/layout/MobileBottomNav";
 
 // ২. SEO-ফ্রেন্ডলি মেটাডেটা: বিস্তারিত এবং ডায়নামিক টাইটেল টেমপ্লেট
 export const metadata: Metadata = {
@@ -111,10 +108,7 @@ export default function RootLayout({
         />
       </head>
       <body className="font-roboto antialiased">
-        <Header />
         <main>{children}</main>
-        <Footer />
-        <MobileBottomNav />
       </body>
     </html>
   );

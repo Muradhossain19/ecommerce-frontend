@@ -1,0 +1,61 @@
+/* === Admin Layout: Final Scroll Fix Styles === */
+
+.adminLayout {
+  /* এই কন্টেইনারটি এখন শুধুমাত্র পজিশনিং এর জন্য ব্যবহৃত হবে */
+  position: relative;
+  background-color: #f9fafb;
+}
+
+/* --- Main Content Wrapper (UPDATED) --- */
+.mainWrapper {
+  /* এটি এখন একটি ফ্লেক্স কন্টেইনার যা হেডার এবং মূল কনটেন্টকে সাজাবে */
+  display: flex;
+  flex-direction: column;
+
+  /* এটি এখন একটি নির্দিষ্ট উচ্চতা পাবে এবং এর ভেতরের কনটেন্ট স্ক্রল করবে */
+  height: 100vh;
+
+  /* সাইডবারের প্রস্থ অনুযায়ী মার্জিন পাবে */
+  margin-left: 270px;
+  transition: margin-left 0.3s ease;
+}
+
+.mainWrapper.collapsed {
+  margin-left: 80px;
+}
+
+/* --- Main Content Area (UPDATED) --- */
+.mainContent {
+  flex-grow: 1; /* হেডার বাদে বাকি সব জায়গা নেবে */
+  overflow-y: auto; /* *** মূল সমাধান: শুধুমাত্র এই অংশটি স্ক্রল করবে *** */
+  padding: 1.5rem;
+  min-height: 0; /* ফ্লেক্সবক্সের স্ক্রলিং এর জন্য এটি জরুরি */
+}
+
+/* --- Mobile Overlay --- */
+.overlay {
+  display: none;
+}
+
+/* --- Responsive Styles --- */
+@media (max-width: 768px) {
+  .mainWrapper {
+    margin-left: 0;
+  }
+  .mainWrapper.collapsed {
+    margin-left: 0;
+  }
+  .mainContent {
+    padding: 1rem;
+  }
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: block;
+  }
+}

@@ -1,0 +1,425 @@
+/* === Dashboard Overview: Final Version Styles === */
+
+.dashboardGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.cardTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* --- Dropdown Filter --- */
+.dropdownWrapper {
+  position: relative;
+}
+.filterButton {
+  background-color: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  font-family: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: background-color 0.2s;
+}
+.filterButton:hover {
+  background-color: #f9fafb;
+}
+.chevron {
+  transition: transform 0.2s ease-in-out;
+}
+.chevron.open {
+  transform: rotate(180deg);
+}
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 5px);
+  right: 0;
+  background-color: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem;
+  z-index: 10;
+  width: 120px;
+}
+.dropdownMenu button {
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  background: none;
+  text-align: left;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-family: inherit;
+  transition: background-color 0.2s;
+}
+.dropdownMenu button:hover {
+  background-color: #f9fafb;
+}
+
+/* --- Stat Cards --- */
+.statHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+.statIcon {
+  width: 20px;
+  height: 20px;
+}
+.statValue {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0.5rem 0;
+}
+.statGrowth {
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-weight: 600;
+}
+.trendUp {
+  color: #10b981;
+}
+.trendDown {
+  color: #ef4444;
+}
+
+/* --- Sales Chart --- */
+.salesChartCard {
+  grid-column: span 3;
+}
+.chartContainer {
+  flex-grow: 1;
+  min-height: 300px;
+}
+
+/* --- Order Statistics --- */
+.orderStatsCard {
+  grid-column: span 1;
+}
+.donutChartContainer {
+  height: 180px;
+  margin-bottom: 1.5rem;
+}
+.legendContainer {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem 1rem;
+  flex-wrap: wrap;
+}
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+.legendColorBox {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+/* --- Recent Orders --- */
+.recentOrdersCard {
+  grid-column: span 4;
+  padding-bottom: 0.5rem;
+}
+.ordersContainer {
+  width: 100%;
+}
+.ordersHeader {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  border-bottom: 1px solid var(--color-border);
+}
+.headerCell {
+  text-align: left;
+}
+.headerCellProduct {
+  text-align: left;
+}
+.headerCellAction {
+  text-align: center;
+}
+.orderList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.orderRow {
+  background-color: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+.orderRow:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+.orderRowHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  background-color: #f9fafb;
+  border-bottom: 1px solid var(--color-border);
+}
+.orderRowBody {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+.productDetail {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.productImage {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.productName {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+.productMeta {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+.price,
+.payment {
+  font-size: 0.9rem;
+}
+.status {
+  text-align: center;
+}
+.statusBadge {
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.statusPending {
+  background-color: #fff7ed;
+  color: #f97316;
+}
+.statusDelivered {
+  background-color: #f0fdf4;
+  color: #22c55e;
+}
+.statusCancelled {
+  background-color: #fef2f2;
+  color: #ef4444;
+}
+.statusDeadline {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-top: 0.5rem;
+}
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+.actionButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 6px;
+  border: 1px solid;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  font-family: inherit;
+  transition: background-color 0.2s, color 0.2s;
+  width: 140px;
+}
+.actionButton span {
+  line-height: 1;
+}
+.printButton {
+  background-color: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+.printButton:hover {
+  background-color: #2563eb;
+}
+.cancelButton {
+  background-color: transparent;
+  color: #ef4444;
+  border-color: #ef4444;
+}
+.cancelButton:hover {
+  background-color: #fef2f2;
+}
+
+/* --- Best Selling Products --- */
+.bestSellingCard {
+  grid-column: span 2;
+}
+.tableWrapper {
+  overflow-x: auto;
+}
+.bestSellingTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+.bestSellingTable th {
+  text-align: left;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+.bestSellingTable td {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+.bestSellingTable tr:last-child td {
+  border-bottom: none;
+}
+.productInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.productImageSmall {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 6px;
+  background-color: #f9fafb;
+  padding: 4px;
+}
+.saleInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+.earningInfo {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* --- Top Selling Category (NEW STYLES) --- */
+.topCategoryCard {
+  grid-column: span 2;
+}
+.categoryChartContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+.categoryLegend {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  gap: 0.7rem 1.5rem; /* Less vertical gap, more horizontal gap */
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+.categoryLegendItem {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  gap: 0.4rem; /* Space between color and name */
+  /* min-width: 180px;  */
+}
+.categoryName {
+  margin-right: 0.2rem; /* Space between name and percentage */
+  color: var(--color-text-base);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+.categoryPercentage {
+  font-weight: 600;
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  margin-left: 0.1rem; /* Small space from name */
+  letter-spacing: 0.01em;
+}
+
+/* --- Responsive Styles --- */
+@media (max-width: 1280px) {
+  .dashboardGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .salesChartCard,
+  .recentOrdersCard {
+    grid-column: span 2;
+  }
+}
+@media (max-width: 768px) {
+  .dashboardGrid {
+    grid-template-columns: 1fr;
+  }
+  .card {
+    grid-column: span 1 !important;
+  }
+  .ordersHeader {
+    display: none;
+  }
+  .orderRowBody {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+  .price,
+  .payment,
+  .status,
+  .actions {
+    text-align: left;
+  }
+  .actions {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}

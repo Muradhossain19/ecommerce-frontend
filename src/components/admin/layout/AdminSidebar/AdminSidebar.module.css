@@ -1,0 +1,260 @@
+/* === Admin Sidebar Styles === */
+
+.sidebar {
+  width: 270px; /* একটু কমিয়েছি যেন কন্টেন্টের সাথে সামঞ্জস্য থাকে */
+  background-color: var(--color-surface);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  transition: width 0.3s ease, transform 0.3s ease;
+  flex-shrink: 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+}
+
+/* --- Collapsed State --- */
+.sidebar.collapsed {
+  width: 80px;
+}
+
+.sidebar.collapsed .navLabel,
+.sidebar.collapsed .chevron,
+.sidebar.collapsed .sidebarHeader .logoText {
+  opacity: 0;
+  visibility: hidden;
+  width: 0;
+  transition: opacity 0.1s ease;
+}
+
+.sidebar.collapsed .badge {
+  position: absolute;
+  top: 4px;
+  right: 12px;
+  font-size: 10px;
+  padding: 1px 5px;
+}
+
+.sidebar.collapsed .subMenu {
+  display: none;
+}
+
+/* --- Header --- */
+.sidebarHeader {
+  padding: 0 1.5rem;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-primary);
+  border-bottom: 1px solid var(--color-border);
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center logo when collapsed */
+  flex-shrink: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.sidebarHeader .logoText {
+  transition: opacity 0.3s ease;
+}
+
+.sidebar.collapsed .sidebarHeader {
+  padding: 0;
+}
+
+/* --- Body (Scrollable) --- */
+.sidebarBody {
+  flex: 1 1 0%;
+  overflow-y: auto;
+  min-height: 0;
+  padding: 1rem 0;
+  /* === FIX FOR LAYOUT SHIFT === */
+  scrollbar-gutter: stable;
+}
+
+.sidebarBody::-webkit-scrollbar {
+  width: 6px;
+}
+.sidebarBody::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 6px;
+}
+.sidebarBody::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.navList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* --- Footer --- */
+.sidebarFooter {
+  padding: 0.4rem 0.75rem;
+  border-top: 1px solid var(--color-border);
+  flex-shrink: 0;
+  min-height: 48px;
+  background: white;
+}
+
+.profileLink {
+  display: flex;
+  align-items: center;
+  padding: 0.35rem 0.5rem;
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  color: var(--color-text-muted);
+  transition: background-color 0.2s ease, color 0.2s ease;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.profileLink:hover {
+  background-color: #eceff1;
+  color: var(--color-text-base);
+}
+.profileLink.active {
+  background-color: var(--color-primary-hover);
+  color: white;
+}
+
+.profileAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--color-secondary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+/* --- Nav Items & Links --- */
+.navItem {
+  padding: 0 1rem;
+}
+
+.navLink,
+.subLink {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  color: var(--color-text-muted);
+  margin-bottom: 0.25rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  font-weight: 500;
+  font-size: 0.95rem;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.navLink:hover,
+.subLink:hover {
+  background-color: #eceff1;
+  color: var(--color-text-base);
+}
+.navLink.active {
+  background-color: var(--color-primary);
+  color: white;
+  font-weight: 600;
+}
+.navLink.active:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.navIcon {
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+.navLabel {
+  flex-grow: 1;
+  transition: opacity 0.3s ease, width 0.3s ease;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-primary);
+  color: white;
+  border-radius: 999px;
+  padding: 0 6px;
+  height: 20px;
+  min-width: 20px;
+  font-size: 10px;
+  font-weight: 600;
+  margin-left: 0.5rem; /* স্পেস বাড়ানো হয়েছে */
+  line-height: 1;
+  box-sizing: border-box;
+}
+
+.navLink.active .badge {
+  background-color: white;
+  color: var(--color-primary);
+}
+
+.chevron {
+  margin-left: 0.5rem;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.chevron.open {
+  transform: rotate(180deg);
+}
+
+.subMenu {
+  list-style: none;
+  padding-left: 1.5rem;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.subMenu.open {
+  max-height: 500px;
+}
+
+.subLink {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+.subLink.active {
+  color: var(--color-primary);
+  font-weight: 600;
+  background-color: transparent;
+}
+.subLink.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+}
+
+/* --- Responsive Styles --- */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+}
