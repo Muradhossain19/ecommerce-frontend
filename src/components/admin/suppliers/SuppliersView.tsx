@@ -95,7 +95,6 @@ export const SuppliersView: React.FC = () => {
       <PageHeader
         title="All Suppliers"
         subtitle="Manage your product suppliers and their information."
-        breadcrumbs={["Suppliers"]}
       >
         <button className={styles.secondaryButton}>
           <Upload size={16} /> Export List
@@ -106,7 +105,7 @@ export const SuppliersView: React.FC = () => {
       </PageHeader>
 
       <div className={styles.contentCard}>
-        <FilterBar placeholder="Search by supplier name or company..." />
+        <FilterBar />
 
         <div className={styles.tableWrapper}>
           <table className={styles.suppliersTable}>

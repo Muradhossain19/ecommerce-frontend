@@ -1,6 +1,7 @@
 "use client";
 
 import { ChromePicker } from "react-color";
+import type { ColorResult } from "react-color";
 import React, { useState, useEffect, useRef } from "react";
 import { useEditor, EditorContent, Editor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
@@ -109,20 +110,24 @@ const EditorToolbar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
                   display: "block",
                   width: "100%",
                   padding: "0.4rem 1rem",
-                  background:
-                    editor?.isActive("heading", { level }) &&
-                    "var(--color-primary)",
+                  background: editor?.isActive("heading", { level })
+                    ? "var(--color-primary)"
+                    : undefined,
                   color: editor?.isActive("heading", { level })
                     ? "#fff"
                     : "#222",
                   border: "none",
                   textAlign: "left",
                   fontWeight: 500,
-                  fontSize: 15 - level * 0.5,
+                  fontSize: `${15 - level * 0.5}px`,
                   cursor: "pointer",
                 }}
                 onClick={() => {
-                  editor?.chain().focus().toggleHeading({ level }).run();
+                  editor
+                    ?.chain()
+                    .focus()
+                    .toggleHeading({ level: level as 1 | 2 | 3 | 4 | 5 | 6 })
+                    .run();
                   setHeadingOpen(false);
                 }}
               >
@@ -135,13 +140,14 @@ const EditorToolbar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
                 display: "block",
                 width: "100%",
                 padding: "0.4rem 1rem",
-                background:
-                  editor?.isActive("paragraph") && "var(--color-primary)",
+                background: editor?.isActive("paragraph")
+                  ? "var(--color-primary)"
+                  : undefined,
                 color: editor?.isActive("paragraph") ? "#fff" : "#222",
                 border: "none",
                 textAlign: "left",
                 fontWeight: 500,
-                fontSize: 15,
+                fontSize: "15px",
                 cursor: "pointer",
               }}
               onClick={() => {
@@ -403,8 +409,8 @@ const EditorToolbar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
           >
             <ChromePicker
               color={color}
-              onChange={(c) => setColor(c.hex)}
-              onChangeComplete={(c) => {
+              onChange={(c: ColorResult) => setColor(c.hex)}
+              onChangeComplete={(c: ColorResult) => {
                 setColor(c.hex);
                 editor?.chain().focus().setColor(c.hex).run();
               }}

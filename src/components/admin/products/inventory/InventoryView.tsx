@@ -206,14 +206,13 @@ export const InventoryView: React.FC = () => {
       <PageHeader
         title="Product Inventory"
         subtitle="Track and manage stock levels for all your products."
-        breadcrumbs={["Products", "Inventory"]}
       >
         <button className={styles.secondaryButton}>
           <Upload size={16} /> Export List
         </button>
       </PageHeader>
       <div className={styles.contentCard}>
-        <FilterBar placeholder="Search by product name or SKU..." />
+        <FilterBar />
         {selected.length > 0 && (
           <div className={styles.bulkActionsBar}>
             <span>{selected.length} item(s) selected</span>

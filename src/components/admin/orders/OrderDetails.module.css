@@ -1,0 +1,346 @@
+/* General Styles */
+.container {
+  padding: 2rem;
+
+  background-color: #f9fafb;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.headerActions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 0.375rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.buttonPrimary {
+  background-color: #2563eb;
+  color: white;
+}
+
+.buttonPrimary:hover {
+  background-color: #1d4ed8;
+}
+
+.buttonSecondary {
+  background-color: white;
+  color: #374151;
+  border: 1px solid #d1d5db;
+}
+
+.buttonSecondary:hover {
+  background-color: #f9fafb;
+}
+
+/* Layout */
+.mainContent {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .mainContent {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.leftColumn,
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Card Styles */
+.card {
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+}
+
+.cardTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #111827;
+}
+
+/* Order Items Table */
+.itemsTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.itemsTable th,
+.itemsTable td {
+  text-align: left;
+  padding: 0.75rem 0.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: middle;
+}
+
+.itemsTable th {
+  font-size: 0.8rem;
+  color: #6b7280;
+  text-transform: uppercase;
+}
+
+.productCell {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.productImage {
+  border-radius: 0.25rem;
+}
+
+/* Pricing Summary */
+.pricingSummary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  margin-top: -0.5rem;
+  border-top: 1px solid #e5e7eb;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.pricingRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+.totalRow {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111827;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* Details Section */
+.detailItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.detailItem strong {
+  color: #374151;
+}
+
+.status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.statusPending {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.statusSelect {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  border: 1px solid #d1d5db;
+  background-color: #f9fafb;
+}
+
+.address {
+  font-style: normal;
+  line-height: 1.6;
+  color: #374151;
+  font-size: 0.9rem;
+}
+
+/* Order Notes */
+.notesList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.noteItem {
+  background-color: #f3f4f6;
+  padding: 1rem;
+  border-radius: 0.375rem;
+}
+
+.noteText {
+  margin: 0 0 0.5rem 0;
+  color: #374151;
+}
+
+.noteMeta {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.addNote {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.noteTextarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  font-family: inherit;
+  resize: vertical;
+}
+/* OrderDetails.module.css ফাইলের শেষে এই কোড যোগ করুন */
+
+/* Status Badge Styles */
+.statusBadge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  display: inline-block;
+  text-align: center;
+}
+
+.statusProcessing {
+  color: #9a3412;
+  background-color: #ffedd5;
+}
+.statusShipped {
+  color: #1d4ed8;
+  background-color: #dbeafe;
+}
+.statusDelivered {
+  color: #15803d;
+  background-color: #dcfce7;
+}
+.statusCancelled {
+  color: #b91c1c;
+  background-color: #fee2e2;
+}
+/* আগে থেকে থাকা .statusPending ক্লাসটি এখন .statusBadge এর সাথে ব্যবহার হবে */
+.statusPending {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+/* OrderDetails.module.css ফাইলের শেষে এই কোড যোগ করুন */
+
+/* --- Return Management Card --- */
+.returnCard {
+  border-left: 4px solid var(--color-primary);
+  background-color: #f8f9fa;
+}
+
+.returnActions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* --- Action Buttons --- */
+.button {
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.buttonPrimary {
+  background-color: var(--color-primary);
+  color: white;
+}
+.buttonPrimary:hover {
+  background-color: var(--color-primary-hover);
+}
+.buttonSecondary {
+  background-color: #e9ecef;
+  color: #343a40;
+}
+.buttonSecondary:hover {
+  background-color: #dee2e6;
+}
+.buttonDanger {
+  background-color: #dc3545;
+  color: white;
+}
+.buttonDanger:hover {
+  background-color: #c82333;
+}
+
+/* --- Refund Modal --- */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background: white;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modalContent h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.modalDetail {
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}
+
+.modalActions {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}

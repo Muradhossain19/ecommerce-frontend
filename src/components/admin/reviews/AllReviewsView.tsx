@@ -6,9 +6,24 @@ import { PageHeader } from "../products/shared/PageHeader";
 import { FilterBar } from "../products/shared/FilterBar";
 import { Trash2, Check, AlertTriangle } from "lucide-react";
 import styles from "./AllReviews.module.css";
+import { ReplyModal } from "./ReplyModal"; // <-- নতুন ইম্পোর্ট
 
-// Sample Data for Reviews
-const reviewsData = [
+// রিভিউ ডেটার জন্য ইন্টারফেস
+interface Review {
+  id: string;
+  productName: string;
+  productImage: string;
+  authorName: string;
+  authorEmail: string;
+  rating: number;
+  reviewText: string;
+  status: "Approved" | "Pending" | "Spam";
+  date: string;
+  reply?: string; // উত্তর রাখার জন্য নতুন ফিল্ড
+}
+
+const reviewsData: Review[] = [
+  // (আপনার আগের ডামি ডেটা এখানে থাকবে)
   {
     id: "REV001",
     productName: "Nike Air Jordan Reflex",
@@ -18,8 +33,9 @@ const reviewsData = [
     rating: 5,
     reviewText:
       "Absolutely love these shoes! So comfortable and stylish. Highly recommend to everyone looking for great sneakers.",
-    status: "Approved" as const,
+    status: "Approved",
     date: "2025-09-12",
+    reply: "Thanks for the amazing feedback, John!",
   },
   {
     id: "REV002",
@@ -30,7 +46,7 @@ const reviewsData = [
     rating: 3,
     reviewText:
       "It's an okay product. The light is a bit too dim for my liking, but the build quality is decent for the price.",
-    status: "Pending" as const,
+    status: "Pending",
     date: "2025-09-11",
   },
   {
@@ -42,14 +58,15 @@ const reviewsData = [
     rating: 1,
     reviewText:
       "Terrible product. Stopped working after just one week. Customer support was not helpful at all. Avoid!",
-    status: "Spam" as const,
+    status: "Spam",
     date: "2025-09-10",
   },
 ];
 
-// Helper to render star ratings
+// (StarRating এবং getStatusClass হেল্পার ফাংশন অপরিবর্তিত থাকবে)
 const StarRating: React.FC<{ rating: number }> = ({ rating }) => (
   <div className={styles.starRating}>
+    {" "}
     {[...Array(5)].map((_, i) => (
       <svg
         key={i}
@@ -61,11 +78,9 @@ const StarRating: React.FC<{ rating: number }> = ({ rating }) => (
       >
         <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" />
       </svg>
-    ))}
+    ))}{" "}
   </div>
 );
-
-// Helper for status badge styles
 const getStatusClass = (status: "Approved" | "Pending" | "Spam") => {
   switch (status) {
     case "Approved":
@@ -80,26 +95,43 @@ const getStatusClass = (status: "Approved" | "Pending" | "Spam") => {
 };
 
 export const AllReviewsView: React.FC = () => {
-  const [reviews, setReviews] = useState(reviewsData);
+  const [reviews, setReviews] = useState<Review[]>(reviewsData);
   const [selectAll, setSelectAll] = useState(false);
   const [selected, setSelected] = useState<string[]>([]);
+
+  // --- নতুন State ---
+  const [isReplyModalOpen, setIsReplyModalOpen] = useState(false);
+  const [reviewToReply, setReviewToReply] = useState<Review | null>(null);
 
   useEffect(() => {
     setSelectAll(selected.length === reviews.length && reviews.length > 0);
   }, [selected, reviews]);
 
   const handleSelectAll = () => {
-    if (selectAll) {
-      setSelected([]);
-    } else {
-      setSelected(reviews.map((r) => r.id));
-    }
+    if (selectAll) setSelected([]);
+    else setSelected(reviews.map((r) => r.id));
   };
 
   const handleSelectRow = (id: string) => {
     setSelected((prev) =>
       prev.includes(id) ? prev.filter((sid) => sid !== id) : [...prev, id]
     );
+  };
+
+  // --- নতুন ফাংশন ---
+  const openReplyModal = (review: Review) => {
+    setReviewToReply(review);
+    setIsReplyModalOpen(true);
+  };
+
+  const handleReplySubmit = (reviewId: string, replyText: string) => {
+    setReviews((prev) =>
+      prev.map((r) =>
+        r.id === reviewId ? { ...r, reply: replyText, status: "Approved" } : r
+      )
+    );
+    // এখানে API তে ডেটা পাঠানোর লজিক থাকবে
+    console.log(`Replying to ${reviewId}: ${replyText}`);
   };
 
   return (
@@ -110,7 +142,7 @@ export const AllReviewsView: React.FC = () => {
       />
 
       <div className={styles.contentCard}>
-        <FilterBar placeholder="Search by product or author..." />
+        <FilterBar />
 
         {selected.length > 0 && (
           <div className={styles.bulkActionsBar}>
@@ -161,7 +193,6 @@ export const AllReviewsView: React.FC = () => {
                     <div className={styles.authorCell}>
                       <p className={styles.authorName}>{review.authorName}</p>
                       <p className={styles.authorEmail}>{review.authorEmail}</p>
-                      {/* --- সমাধান ৩: স্ট্যাটাস ব্যাজ যোগ করা হয়েছে --- */}
                       <span
                         className={`${styles.statusBadge} ${getStatusClass(
                           review.status
@@ -175,6 +206,14 @@ export const AllReviewsView: React.FC = () => {
                     <div className={styles.reviewCell}>
                       <StarRating rating={review.rating} />
                       <p className={styles.reviewText}>{review.reviewText}</p>
+                      {/* --- উত্তর থাকলে দেখানো হবে --- */}
+                      {review.reply && (
+                        <div className={styles.adminReply}>
+                          <p>
+                            <strong>Your Reply:</strong> {review.reply}
+                          </p>
+                        </div>
+                      )}
                     </div>
                   </td>
                   <td>
@@ -197,11 +236,11 @@ export const AllReviewsView: React.FC = () => {
                       >
                         Approve
                       </button>
-                      {/* --- সমাধান ১: MessageSquare আইকন যোগ করা হয়েছে --- */}
                       <button
                         className={`${styles.actionButton} ${styles.replyAction}`}
+                        onClick={() => openReplyModal(review)}
                       >
-                        Reply
+                        {review.reply ? "Edit Reply" : "Reply"}
                       </button>
                       <button
                         className={`${styles.actionButton} ${styles.spamAction}`}
@@ -220,8 +259,16 @@ export const AllReviewsView: React.FC = () => {
             </tbody>
           </table>
         </div>
-        {/* Pagination will go here */}
       </div>
+
+      {/* --- মডাল রেন্ডারিং --- */}
+      {isReplyModalOpen && reviewToReply && (
+        <ReplyModal
+          review={reviewToReply}
+          onClose={() => setIsReplyModalOpen(false)}
+          onSubmit={handleReplySubmit}
+        />
+      )}
     </div>
   );
 };

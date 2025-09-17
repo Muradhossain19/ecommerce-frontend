@@ -1,0 +1,446 @@
+.allOrdersPage {
+  padding: 0.2rem;
+}
+.exportButton {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s;
+}
+.exportButton:hover {
+  background-color: var(--color-primary-hover);
+}
+.contentCard {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+}
+
+/* --- Tabs --- */
+.tabsWrapper {
+  display: flex;
+  gap: 0.15rem; /* gap komano holo */
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 1.2rem;
+  overflow-x: auto;
+}
+.tabButton {
+  padding: 0.55rem 0.85rem; /* padding komano holo */
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-heading);
+  font-size: 0.89rem; /* font-size choto kora holo */
+  font-weight: 500;
+  color: var(--color-text-muted);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem; /* icon-label gap komano holo */
+  white-space: nowrap;
+}
+.tabButton.active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+.tabButton svg {
+  display: inline-block;
+  vertical-align: middle;
+  color: var(--color-text-muted);
+  /* width: 22px;
+  height: 22px; */
+  margin-right: 0.25rem;
+  flex-shrink: 0;
+}
+.tabButton.active svg {
+  color: var(--color-primary);
+}
+.tabCount {
+  background-color: #e5e7eb;
+  color: var(--color-text-base);
+  font-size: 0.72rem; /* tab count-er font-size choto */
+  padding: 0.08rem 0.38rem;
+  border-radius: 999px;
+}
+.tabButton.active .tabCount {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+/* --- Table Structure --- */
+.tableWrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.productsTable {
+  width: 100%;
+  min-width: 700px;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.productsTable th,
+.productsTable td {
+  padding: 0.5rem 1rem;
+  text-align: left;
+  border: 1px solid var(--color-border);
+  vertical-align: middle;
+  background: #fff;
+}
+
+.productsTable th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #f9fafb;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Responsive column widths */
+.productsTable th:nth-child(1),
+.productsTable td:nth-child(1) {
+  width: 32px;
+  min-width: 28px;
+  max-width: 40px;
+  text-align: center;
+  vertical-align: middle;
+  padding-left: 0;
+  padding-right: 0;
+}
+.productsTable th:nth-child(2),
+.productsTable td:nth-child(2) {
+  width: 320px;
+  min-width: 220px;
+  max-width: 400px;
+}
+.productsTable th:nth-child(3),
+.productsTable td:nth-child(3) {
+  width: 90px;
+  min-width: 70px;
+  max-width: 120px;
+}
+.productsTable th:nth-child(4),
+.productsTable td:nth-child(4) {
+  width: 110px;
+  min-width: 80px;
+  max-width: 140px;
+}
+.productsTable th:nth-child(5),
+.productsTable td:nth-child(5) {
+  width: 140px;
+  min-width: 100px;
+  max-width: 180px;
+}
+.productsTable th:nth-child(6),
+.productsTable td:nth-child(6) {
+  width: 110px;
+  min-width: 80px;
+  max-width: 140px;
+  text-align: left;
+  vertical-align: middle;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.productCell {
+  display: flex;
+  align-items: flex-start; /* Top align */
+  gap: 1rem;
+}
+
+/* Product cell image size and alignment */
+.productImage {
+  border-radius: 6px;
+  object-fit: cover;
+  width: 64px; /* Bigger */
+  height: 64px; /* Bigger */
+  background: #f3f4f6;
+  flex-shrink: 0;
+  margin-top: 0; /* Remove any vertical centering */
+}
+
+.productInfo {
+  min-width: 140px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.productName {
+  font-weight: 600;
+  color: var(--color-text-base);
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+}
+
+.productMeta {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-top: 0.25rem;
+  line-height: 1.3;
+}
+
+.price {
+  font-weight: 500;
+}
+
+/* Status badge and deadline alignment */
+.statusBadge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 2px;
+}
+
+.statusDeadline {
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: 2px;
+  line-height: 1.3;
+}
+
+.statusPending {
+  background-color: #fff7ed;
+  color: #f97316;
+}
+.statusProcessing {
+  background-color: #eff6ff;
+  color: #3b82f6;
+}
+.statusShipped {
+  background-color: #f0fdfa;
+  color: #14b8a6;
+}
+.statusDelivered {
+  background-color: #f0fdf4;
+  color: #22c55e;
+}
+.statusCancelled {
+  background-color: #fef2f2;
+  color: #ef4444;
+}
+
+/* Action buttons spacing */
+.actionButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+.editButton,
+.deleteButton {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 1px solid;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.editButton {
+  background-color: #e3f2fd;
+  color: #1e88e5;
+  border-color: #bbdefb;
+}
+.deleteButton {
+  background-color: #ffebee;
+  color: #c62828;
+  border-color: #ffcdd2;
+}
+
+/* Checkbox alignment */
+.productsTable td:first-child {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.productsTable th:first-child,
+.productsTable td:first-child {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.productsTable th:first-child input[type="checkbox"],
+.productsTable td:first-child input[type="checkbox"] {
+  margin: 0 auto;
+  display: block;
+  accent-color: var(--color-primary);
+  width: 16px;
+  height: 16px;
+}
+
+/* Customer meta information styles */
+.customerMeta {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  font-size: 0.8rem;
+  color: #888;
+}
+.customerName {
+  font-weight: 600;
+  color: var(--color-text-base);
+}
+.customerDate {
+  color: #888;
+  margin-left: 0;
+}
+.customerOrderId {
+  color: #888;
+}
+
+/* More items badge */
+.moreItemsBadge {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 2px 8px;
+  background: #f3f4f6;
+  color: #555;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* Orders.module.css ফাইলে এই কোড যোগ করুন */
+
+.productLink {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease-in-out;
+}
+
+.productLink:hover .productName {
+  color: #2563eb; /* হোভার করলে নীল রঙ হবে */
+  text-decoration: underline;
+}
+
+.orderIdLink {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease-in-out;
+}
+
+.orderIdLink:hover .customerOrderId {
+  color: #2563eb; /* হোভার করলে নীল রঙ হবে */
+  text-decoration: underline;
+}
+
+/* Responsive: stack vertically on mobile */
+@media (max-width: 767px) {
+  .customerMeta {
+    flex-direction: column;
+    gap: 0.2rem;
+    font-size: 0.78rem;
+  }
+  .productCell {
+    gap: 0.7rem;
+  }
+  .productImage {
+    width: 48px;
+    height: 48px;
+  }
+  .moreItemsBadge {
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    margin-top: 2px;
+  }
+  .actionButtons {
+    gap: 0.3rem;
+  }
+  .productsTable th:nth-child(6),
+  .productsTable td:nth-child(6) {
+    width: 80px;
+    min-width: 60px;
+    max-width: 100px;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+  }
+}
+
+/* Responsive styles for tablet (<=1024px) */
+@media (max-width: 1024px) {
+  .productsTable th:nth-child(2),
+  .productsTable td:nth-child(2) {
+    width: 38vw;
+    min-width: 140px;
+    max-width: 260px;
+  }
+  .productsTable th:nth-child(3),
+  .productsTable td:nth-child(3) {
+    width: 13vw;
+    min-width: 60px;
+    max-width: 90px;
+  }
+  .productsTable th:nth-child(4),
+  .productsTable td:nth-child(4) {
+    width: 15vw;
+    min-width: 60px;
+    max-width: 100px;
+  }
+  .productsTable th:nth-child(5),
+  .productsTable td:nth-child(5) {
+    width: 18vw;
+    min-width: 80px;
+    max-width: 120px;
+  }
+  .productsTable th:nth-child(6),
+  .productsTable td:nth-child(6) {
+    width: 15vw;
+    min-width: 60px;
+    max-width: 100px;
+  }
+}
+
+/* Responsive styles for mobile (<=767px) */
+@media (max-width: 767px) {
+  .contentCard {
+    padding: 0.7rem;
+  }
+  .productsTable {
+    min-width: 600px;
+    font-size: 0.92rem;
+  }
+  .productsTable th,
+  .productsTable td {
+    padding: 0.35rem 0.5rem;
+    font-size: 0.92rem;
+  }
+  .productsTable th:nth-child(2),
+  .productsTable td:nth-child(2) {
+    width: 55vw;
+    min-width: 100px;
+    max-width: 160px;
+  }
+  .productsTable th:nth-child(3),
+  .productsTable td:nth-child(3),
+  .productsTable th:nth-child(4),
+  .productsTable td:nth-child(4),
+  .productsTable th:nth-child(5),
+  .productsTable td:nth-child(5),
+  .productsTable th:nth-child(6),
+  .productsTable td:nth-child(6) {
+    width: auto;
+    min-width: 50px;
+    max-width: 90px;
+  }
+}
