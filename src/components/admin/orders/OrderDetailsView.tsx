@@ -280,7 +280,7 @@ const OrderDetailsView = () => {
       setOrder((prev) =>
         prev
           ? { ...prev, returnStatus: "Requested", returnReason: reason }
-          : null
+          : null,
       );
     }
   };
@@ -303,7 +303,7 @@ const OrderDetailsView = () => {
       date: new Date().toLocaleString(),
     };
     setOrder((prev) =>
-      prev ? { ...prev, notes: [...prev.notes, noteToAdd] } : null
+      prev ? { ...prev, notes: [...prev.notes, noteToAdd] } : null,
     );
     setNewNote("");
   };
@@ -330,7 +330,7 @@ const OrderDetailsView = () => {
     doc.text(
       `${order.customer.shippingAddress.city} - ${order.customer.shippingAddress.postalCode}`,
       140,
-      68
+      68,
     );
     const tableColumn = [
       "Product Name",
@@ -364,7 +364,7 @@ const OrderDetailsView = () => {
       `BDT ${order.pricing.subtotal.toFixed(2)}`,
       summaryXEnd,
       currentY,
-      { align: "right" }
+      { align: "right" },
     );
     currentY += 7;
     doc.text("Shipping:", summaryXStart, currentY);
@@ -372,7 +372,7 @@ const OrderDetailsView = () => {
       `BDT ${order.pricing.shipping.toFixed(2)}`,
       summaryXEnd,
       currentY,
-      { align: "right" }
+      { align: "right" },
     );
     currentY += 7;
     doc.text("Discount:", summaryXStart, currentY);
@@ -380,7 +380,7 @@ const OrderDetailsView = () => {
       `- BDT ${Math.abs(order.pricing.discount).toFixed(2)}`,
       summaryXEnd,
       currentY,
-      { align: "right" }
+      { align: "right" },
     );
     doc.setLineWidth(0.2);
     doc.line(summaryXStart, currentY + 4, summaryXEnd, currentY + 4);
@@ -396,7 +396,7 @@ const OrderDetailsView = () => {
       "Thank you for your business!",
       105,
       doc.internal.pageSize.height - 10,
-      { align: "center" }
+      { align: "center" },
     );
     doc.save(`invoice-${order.id}.pdf`);
   };
@@ -556,7 +556,7 @@ const OrderDetailsView = () => {
                 <strong>Return Status:</strong>
                 <span
                   className={`${styles.statusBadge} ${getStatusClass(
-                    order.returnStatus
+                    order.returnStatus,
                   )}`}
                 >
                   {order.returnStatus}
@@ -629,7 +629,7 @@ const OrderDetailsView = () => {
               <strong>Order Status:</strong>
               <span
                 className={`${styles.statusBadge} ${getStatusClass(
-                  order.status
+                  order.status,
                 )}`}
               >
                 {order.status}
